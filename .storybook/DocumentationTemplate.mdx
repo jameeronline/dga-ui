@@ -1,0 +1,86 @@
+import { Meta, Title, Subtitle, Description, Canvas, Controls, Story, ArgTypes, Unstyled, Stories, Primary, useOf, Source } from "@storybook/addon-docs/blocks";
+
+<Meta isTemplate />
+
+<Unstyled>
+
+  <Meta isTemplate />
+
+  <div className="custom-docs font-ibm-plex-sans grid grid-cols-1 md:grid-cols-4 gap-6">
+    {/* Sidebar */}
+    <aside className="w-64 pl-10 sticky top-0 h-screen overflow-y-auto order-2">
+      <h3 className="text-lg font-semibold mb-4">Table of Contents</h3>
+      <nav>
+        <ul className="space-y-2">
+          <li><a href="#primary-preview" className="text-blue-600 hover:text-blue-800 text-sm">Interactive Preview</a></li>
+          <li><a href="#props-controls" className="text-blue-600 hover:text-blue-800 text-sm">Props & Controls</a></li>
+          {(() => {
+            const meta = useOf('meta');
+            const guidelines = meta?.parameters?.docs?.guidelines;
+            return guidelines && <li><a href="#usage-guidelines" className="text-blue-600 hover:text-blue-800 text-sm">Usage Guidelines</a></li>;
+          })()}
+          {(() => {
+            const meta = useOf('meta');
+            const accessibility = meta?.parameters?.docs?.accessibility;
+            return accessibility && <li><a href="#accessibility-info" className="text-blue-600 hover:text-blue-800 text-sm">Accessibility</a></li>;
+          })()}
+          <li><a href="#component-variants" className="text-blue-600 hover:text-blue-800 text-sm">Variants</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    {/* Main Content */}
+    <div className="col-span-1 md:col-span-3">
+      {/* Header Section */}
+      <header className="prose prose-slate prose-h1:font-bold prose-h1:text-4xl prose-p:text-lg max-w-none mb-10">
+        <Title />
+        <Subtitle />
+        <Description />
+      </header>
+
+      <main className="flex flex-col gap-10">
+        {/* Main Component Preview */}
+        <section aria-labelledby="primary-preview">
+          <h2 id="primary-preview" className="sr-only">Interactive Preview</h2>
+          <Canvas className="border-0 my-custom-canvas shadow-sm rounded-lg mt-0" withToolbar={true}>
+            <Primary />
+          </Canvas>
+        </section>
+
+        {/* Props and Controls */}
+        <section aria-labelledby="props-controls" className="prose prose-slate max-w-none">
+          <h2 id="props-controls" className="text-2xl font-bold mb-2">Props & Controls</h2>
+          <Controls className="rounded-lg" />
+        </section>
+
+        {/* Usage Guidelines (Conditionally Rendered) */}
+        {props.guidelines && (
+          <section aria-labelledby="usage-guidelines" className="prose prose-slate max-w-none bg-slate-50 p-6 rounded-lg border border-slate-100">
+            <h2 id="usage-guidelines" className="text-2xl font-bold mb-2">Usage Guidelines</h2>
+            {props.guidelines}
+          </section>
+        )}
+
+        {/* Accessibility Information (Conditionally Rendered) */}
+        {props.accessibility && (
+          <section aria-labelledby="accessibility-info" className="prose prose-slate max-w-none bg-blue-50 p-6 rounded-lg border border-blue-100">
+            <h2 id="accessibility-info" className="text-2xl font-bold mb-2">Accessibility</h2>
+            <div className="text-blue-800">
+              {props.accessibility}
+            </div>
+          </section>
+        )}
+
+        {/* Alternative Variants */}
+        {/* <hr className="my-0 border-slate-200" /> */}
+        <section aria-labelledby="component-variants" className="prose prose-slate prose-h3:mb-0 max-w-none prose-h3:font-semibold">
+          <h2 id="component-variants" className="text-2xl font-bold mb-2">Variants</h2>
+          <p className="text-slate-600 mb-6">Explore alternative states and configurations for this component.</p>
+          <Stories title={null} includePrimary={false} />
+        </section>
+      </main>
+  </div>
+  </div>
+
+</Unstyled>
+

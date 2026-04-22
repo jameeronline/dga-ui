@@ -1,0 +1,43 @@
+import { Canvas, Controls, Meta, Unstyled, Story, Primary, Stories, Source } from '@storybook/addon-docs/blocks';
+ 
+import * as LoaderStories from './Loader.stories';
+ 
+<Meta of={LoaderStories} />
+
+<Unstyled>
+    <article className="prose max-w-none">
+        {/* Main Title */}
+        # Loader
+        
+        {/* Description */}
+        Indicate the loading state of a component or page with spinners, built entirely with HTML, CSS, and no JavaScript.
+
+        {/* Preview with controls */}
+        <div className='bg-emerald-50 px-6 py-2'>
+            <Primary />
+            <Controls />
+        </div>
+
+        {/* Source Code */}
+        <Source>
+            <html></html>
+        </Source>
+
+        {/* Varients */}
+        ## Varients
+        <Stories />
+
+        {/* Notes */}
+        ## Notes
+
+        ### Usage
+
+        ### Anatomy
+
+        ### Do's & Don't Do's
+
+        ### Accessibility
+
+    </article>
+
+</Unstyled>

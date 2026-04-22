@@ -1,0 +1,108 @@
+<!-- .storybook/manager-head.html -->
+<style>
+  /* Controls Panel Styling - Uses Design System CSS Variables */
+  
+  /* Args Table */
+  .sb-argstable,
+  .sb-argstable-row {
+    border-color: var(--color-gray-200, #e5e7eb) !important;
+  }
+
+  .sb-argstable-header {
+    background-color: var(--color-gray-100, #f3f4f6) !important;
+    color: var(--color-gray-700, #374151) !important;
+    font-weight: 500 !important;
+    border-bottom-color: var(--color-gray-200, #e5e7eb) !important;
+  }
+
+  /* Table Cells */
+  .sb-argstable-row td {
+    color: var(--color-gray-900, #111827) !important;
+  }
+
+  /* Inputs */
+  .sb-addon-panel input:not([type="color"]):not([type="checkbox"]):not([type="radio"]),
+  .sb-addon-panel select,
+  .sb-addon-panel textarea {
+    background-color: var(--color-white, #ffffff) !important;
+    border: 1px solid var(--color-gray-300, #d1d5db) !important;
+    border-radius: 6px !important;
+    color: var(--color-gray-900, #111827) !important;
+    padding: 0.375rem 0.5rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* Input Focus */
+  .sb-addon-panel input:not([type="color"]):not([type="checkbox"]):not([type="radio"]):focus,
+  .sb-addon-panel select:focus,
+  .sb-addon-panel textarea:focus {
+    outline: none !important;
+    border-color: var(--color-primary-500, #22c55e) !important;
+    box-shadow: 0 0 0 2px var(--color-primary-100, #dcfce7) !important;
+  }
+
+  /* Color Input */
+  .sb-addon-panel input[type="color"] {
+    border: 1px solid var(--color-gray-300, #d1d5db) !important;
+    border-radius: 6px !important;
+    padding: 2px !important;
+    height: 2rem !important;
+  }
+
+  /* Checkbox & Radio */
+  .sb-addon-panel input[type="checkbox"],
+  .sb-addon-panel input[type="radio"] {
+    accent-color: var(--color-primary-600, #16a34a) !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* Range Slider */
+  .sb-addon-panel input[type="range"] {
+    accent-color: var(--color-primary-600, #16a34a) !important;
+  }
+
+  /* Labels */
+  .sb-argstable-row label {
+    color: var(--color-gray-600, #4b5563) !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Code badges */
+  .sb-argstable-row code {
+    background-color: var(--color-gray-100, #f3f4f6) !important;
+    border-radius: 6px !important;
+    padding: 0.125rem 0.375rem !important;
+    font-size: 0.75rem !important;
+    color: var(--color-gray-700, #374151) !important;
+  }
+
+  /* Buttons */
+  .sb-addon-panel button {
+    background-color: var(--color-primary-600, #16a34a) !important;
+    color: var(--color-white, #ffffff) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: background-color 150ms ease !important;
+  }
+
+  .sb-addon-panel button:hover {
+    background-color: var(--color-primary-700, #15803d) !important;
+  }
+</style>
+
+<style>
+   .docblock-argstable .docblock-argstable-header{
+     background-color: #f6f8fa !important;
+     font-weight: bold !important;
+     }
+
+     .docblock-argstable .docblock-argstable-body [title="Hide Content items"] td{
+       background-color: #f6f8fa !important;
+       font-weight: bold !important;
+     }
+</style>

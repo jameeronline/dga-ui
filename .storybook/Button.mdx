@@ -1,0 +1,29 @@
+{/* Button.mdx */}
+import { Meta, Title, Description, Canvas, Controls, Story, ArgTypes, Unstyled } from "@storybook/addon-docs/blocks";
+import * as ButtonStories from '../src/stories/Button.stories';
+import DocumentationTemplate from '../../.storybook/DocumentationTemplate.mdx';
+
+<Meta of={ButtonStories} />
+<DocumentationTemplate 
+  guidelines={
+    <>
+      <h3>Dos</h3>
+      <ul>
+        <li>Use the primary variant for main actions.</li>
+        <li>Use the secondary variant for less important actions.</li>
+        <li>Ensure buttons have clear and concise labels.</li>
+      </ul>
+      <h3>Don'ts</h3>
+      <ul>
+        <li>Don't use too many buttons in a single view.</li>
+        <li>Don't use buttons for non-interactive elements.</li>
+        <li>Don't use ambiguous labels that don't clearly indicate the action.</li>
+      </ul>
+    </>
+  }
+  accessibility={
+    <>
+      <p>Accessibility notes here...</p>
+    </>
+  }
+/>

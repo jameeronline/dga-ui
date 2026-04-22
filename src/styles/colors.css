@@ -1,0 +1,69 @@
+:root {
+  /* Primary (SA) Palette References [1, 2] */
+  --color-primary-bg-subtle: var(--color-sa-25);
+  --color-primary-bg: var(--color-sa-50);
+  --color-primary-border: var(--color-sa-200);
+  --color-primary-muted: var(--color-sa-400);
+  --color-primary: var(--color-sa-500);
+  --color-primary-hover: var(--color-sa-600);
+  --color-primary-active: var(--color-sa-700);
+  --color-primary-fg: var(--color-sa-950);
+
+  /* Secondary (Gold) Palette References [3] */
+  --color-secondary-bg: var(--color-gold-50);
+  --color-secondary-border: var(--color-gold-200);
+  --color-secondary: var(--color-gold-500);
+  --color-secondary-hover: var(--color-gold-600); /* Labeled "Primary 600" in source [3] */
+  --color-secondary-active: var(--color-gold-700);
+  --color-secondary-fg: var(--color-gold-950);
+
+  /* Natural (Gray) Palette References [4] */
+  --color-natural-bg-subtle: var(--color-gray-25);
+  --color-natural-bg: var(--color-gray-50);
+  --color-natural-border: var(--color-gray-200);
+  --color-natural-muted: var(--color-gray-400);
+  --color-natural: var(--color-gray-500);
+  --color-natural-hover: var(--color-gray-600);
+  --color-natural-active: var(--color-gray-700);
+  --color-natural-fg: var(--color-gray-950);
+
+  /* Lavender Palette References [5] */
+  --color-lavender-bg: var(--color-lavender-50);
+  --color-lavender-border: var(--color-lavender-200);
+  --color-lavender: var(--color-lavender-500); /* Labeled "Primary 500" in source [5] */
+  --color-lavender-hover: var(--color-lavender-600);
+  --color-lavender-active: var(--color-lavender-700);
+  --color-lavender-fg: var(--color-lavender-950);
+
+  /* Success Palette References [6] */
+  --color-success-bg: var(--color-success-50);
+  --color-success-border: var(--color-success-200);
+  --color-success: var(--color-success-500);
+  --color-success-hover: var(--color-success-600);
+  --color-success-active: var(--color-success-700);
+  --color-success-fg: var(--color-success-950);
+
+  /* Info Palette References [7] */
+  --color-info-bg: var(--color-info-100);
+  --color-info-border: var(--color-info-200);
+  --color-info: var(--color-info-500);
+  --color-info-hover: var(--color-info-600);
+  --color-info-active: var(--color-info-700);
+  --color-info-fg: var(--color-info-950);
+
+  /* Warning Palette References [8] */
+  --color-warning-bg: var(--color-warning-50);
+  --color-warning-border: var(--color-warning-200);
+  --color-warning: var(--color-warning-500);
+  --color-warning-hover: var(--color-warning-600);
+  --color-warning-active: var(--color-warning-700);
+  --color-warning-fg: var(--color-warning-950);
+
+  /* Error Palette References [9] */
+  --color-danger-bg: var(--color-danger-50);
+  --color-danger-border: var(--color-danger-200);
+  --color-danger: var(--color-danger-500);
+  --color-danger-hover: var(--color-danger-600);
+  --color-danger-active: var(--color-danger-700);
+  --color-danger-fg: var(--color-danger-950);
+}

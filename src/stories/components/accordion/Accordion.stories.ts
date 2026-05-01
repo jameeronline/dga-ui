@@ -79,13 +79,13 @@ const meta: Meta<AccordionProps> = {
       description: 'An array of accordion items containing icon, title, and description',
       defaultValue: [
         {
-          icon: 'bi bi-info-circle',
+          icon: 'ri-information-line',
           title: 'How does TailwindCSS work?',
           description:
             'Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating the corresponding styles, and then writing them to a static CSS file.',
         },
         {
-          icon: 'bi bi-info-circle',
+          icon: 'ri-information-line',
           title: 'How do I install TailwindCSS?',
           description:
             'The simplest and fastest way to get up and running with Tailwind CSS from scratch is with the Tailwind CLI tool. Install tailwindcss via npm, and create your tailwind.config.js file.',
@@ -230,6 +230,6 @@ export const CustomToggleIcon: Story = {
     },
   },
   args: {
-    toggleIcon: 'bi-arrow-down',
+    toggleIcon: 'arrow-down',
   },
 };

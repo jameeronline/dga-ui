@@ -22,3 +22,33 @@ export type AlertType = BaseAlertVariant;
 export type AvatarType = ButtonColorVariant;
 export type AccordionSizeVariant = BaseSizeVariant;
 export type ButtonSwitchSizeVariant = BaseSizeVariant;
+export type CardType = 'basic' | 'eCommerce' | 'socialStory' | 'userProfile' | 'form' | 'imageOverlay';
+export type FeatureType = 'one-line' | 'title';
+export type FeaturePosition = 'left' | 'center' | 'top';
+export type ListLeadingItemType = 'icon' | 'avatar' | 'image' | 'checkbox';
+export type ListTrailingItemType = 'badge' | 'text' | 'icon' | 'checkbox';
+export type LoaderType = 'circle' | 'square';
+export type LoaderVariant = BaseBrandVariant | BaseAlertVariant;
+export type LoaderSizeVariant = BaseSizeVariant;
+export type TabsSizeVariant = 'sm' | 'default' | 'lg';
+export type TooltipPosition = 'top' | 'right' | 'bottom' | 'left';
+export type TooltipVariant = BaseColorVariant;
+export type TooltipSizeVariant = 'small' | 'default' | 'large';
+
+// form-element types
+export type DropdownVariant = BaseBrandVariant | BaseAlertVariant;
+export type ButtonGroupSpacing = 'none' | 'small' | 'medium' | 'large' | 'xlarge';
+export type InputType = 'text' | 'password' | 'number' | 'date' | 'email' | 'search' | 'tel' | 'url';
+export type InputSizeVariant = 'small' | 'default' | 'large';
+export type TextareaSizeVariant = 'small' | 'default' | 'large';
+export type RangeSizeVariant = 'small' | 'default' | 'large';
+export type RangeType = 'default' | 'minMax' | 'steps' | 'advanced';
+export type FileInputSizeVariant = 'small' | 'default' | 'large';
+export type ToggleSizeVariant = 'default' | 'large';
+export type ToggleVariant = BaseBrandVariant | BaseAlertVariant;
+
+// feedback component types
+export type NotificationVariant = BaseBrandVariant | BaseAlertVariant;
+export type ProgressBarVariant = BaseBrandVariant | BaseAlertVariant;
+export type ProgressBarSize = 'small' | 'medium' | 'large' | 'xlarge';
+export type ProgressBarVariantType = 'basic' | 'basicWithLabel' | 'labelInside' | 'trailingLabel' | 'trailingIcon';

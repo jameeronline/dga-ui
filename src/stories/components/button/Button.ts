@@ -21,7 +21,10 @@ export interface ButtonProps {
 }
 
 const buttonClassNames = tv({
-  base: `inline-flex items-center justify-center gap-2 font-medium tracking-wide transition duration-300 focus-visible:outline-none whitespace-nowrap disabled:cursor-not-allowed disabled:pointer-events-none disabled:select-none focus-visible:ring-2 focus-visible:ring-offset-2`,
+  slots: {
+    base: `inline-flex items-center justify-center gap-2 font-medium tracking-wide transition duration-300 whitespace-nowrap focus-visible:outline-none  focus-visible:ring-2 focus-visible:ring-offset-2`,
+    iconEl: `text-current`,
+  },
   variants: {
     type: {
       primary: 'bg-primary-800 hover:bg-primary-900 focus-visible:ring-primary-400 text-white',
@@ -35,10 +38,22 @@ const buttonClassNames = tv({
       dark: 'bg-gray-800 hover:bg-gray-900 focus-visible:ring-gray-400 text-white',
     },
     size: {
-      xl: 'h-16 px-24 text-xl',
-      large: 'h-12 px-16 text-base',
-      medium: 'h-10 px-8 text-sm',
-      small: 'h-8 px-4 text-xs',
+      xl: {
+        base: 'h-16 px-8 text-xl',
+        iconEl: 'text-3xl',
+      },
+      large: {
+        base: 'h-14 px-6 text-base',
+        iconEl: 'text-2xl',
+      },
+      medium: {
+        base: 'h-12 px-5 text-sm',
+        iconEl: 'text-xl',
+      },
+      small: {
+        base: 'h-10 px-4 text-xs',
+        iconEl: 'text-lg',
+      },
     },
     rounded: {
       true: 'rounded-full',
@@ -54,7 +69,7 @@ const buttonClassNames = tv({
       true: '',
     },
     full: {
-      true: 'w-full',
+      true: { base: 'w-full' },
     },
     disabled: {
       true: '',
@@ -173,49 +188,54 @@ const buttonClassNames = tv({
     },
     {
       disabled: true,
-      type: 'primary',
-      class: 'disabled:bg-primary-300',
+      class:
+        'disabled:cursor-not-allowed disabled:pointer-events-none disabled:select-none disabled:bg-neutral-200 disabled:border-0 disabled:text-neutral-500',
     },
-    {
-      disabled: true,
-      type: 'secondary',
-      class: 'disabled:bg-secondary-300',
-    },
-    {
-      disabled: true,
-      type: 'tertiary',
-      class: 'disabled:bg-tertiary-300',
-    },
-    {
-      disabled: true,
-      type: 'danger',
-      class: 'disabled:bg-danger-300',
-    },
-    {
-      disabled: true,
-      type: 'success',
-      class: 'disabled:bg-success-300',
-    },
-    {
-      disabled: true,
-      type: 'info',
-      class: 'disabled:bg-info-300',
-    },
-    {
-      disabled: true,
-      type: 'warning',
-      class: 'disabled:bg-warning-300',
-    },
-    {
-      disabled: true,
-      type: 'light',
-      class: 'disabled:bg-gray-100 disabled:text-gray-400',
-    },
-    {
-      disabled: true,
-      type: 'dark',
-      class: 'disabled:bg-gray-400',
-    },
+    // {
+    //   disabled: true,
+    //   type: 'primary',
+    //   class: 'disabled:bg-neutral-200 disabled:border-0 disabled:text-neutral-500',
+    // },
+    // {
+    //   disabled: true,
+    //   type: 'secondary',
+    //   class: 'disabled:bg-secondary-300',
+    // },
+    // {
+    //   disabled: true,
+    //   type: 'tertiary',
+    //   class: 'disabled:bg-tertiary-300',
+    // },
+    // {
+    //   disabled: true,
+    //   type: 'danger',
+    //   class: 'disabled:bg-danger-300',
+    // },
+    // {
+    //   disabled: true,
+    //   type: 'success',
+    //   class: 'disabled:bg-success-300',
+    // },
+    // {
+    //   disabled: true,
+    //   type: 'info',
+    //   class: 'disabled:bg-info-300',
+    // },
+    // {
+    //   disabled: true,
+    //   type: 'warning',
+    //   class: 'disabled:bg-warning-300',
+    // },
+    // {
+    //   disabled: true,
+    //   type: 'light',
+    //   class: 'disabled:bg-gray-100 disabled:text-gray-400',
+    // },
+    // {
+    //   disabled: true,
+    //   type: 'dark',
+    //   class: 'disabled:bg-gray-400',
+    // },
   ],
 });
 
@@ -241,20 +261,20 @@ export const createButton = ({
   href = '#',
   disabled = false,
 }: ButtonProps): string => {
-  const buttonClass = buttonClassNames({
+  const { base, iconEl } = buttonClassNames({
     type,
     size,
     rounded,
     link,
     iconOnly,
     outline,
-    full,
+    full: iconOnly ? false : full,
     disabled,
   });
 
-  const iconLeft = icon && iconPosition === 'left' && !iconOnly ? `<i class="bi ${iconName}"></i>` : '';
-  const iconRight = icon && iconPosition === 'right' && !iconOnly ? `<i class="bi ${iconName}"></i>` : '';
-  const iconOnlyContent = iconOnly ? `<i class="bi ${iconName}"></i>` : '';
+  const iconLeft = icon && iconPosition === 'left' && !iconOnly ? `<i class="${iconName + ' ' + iconEl()}"></i>` : '';
+  const iconRight = icon && iconPosition === 'right' && !iconOnly ? `<i class="${iconName + ' ' + iconEl()}"></i>` : '';
+  const iconOnlyContent = iconOnly ? `<i class="${iconName + ' ' + iconEl()}"></i>` : '';
 
   const escapedLabel = escapeHtml(label);
   const content = `
@@ -266,17 +286,17 @@ export const createButton = ({
 
   if (as === 'button') {
     return formatHtml(`
-      <button type="button" class="${buttonClass}" ${disabled ? 'disabled' : ''}>
+      <button type="button" class="${base()}" ${disabled ? 'disabled' : ''}>
         ${content}
       </button>
     `);
   } else if (as === 'input') {
     return formatHtml(`
-      <input type="button" value="${escapedLabel}" class="${buttonClass}" ${disabled ? 'disabled' : ''} />
+      <input type="button" value="${escapedLabel}" class="${base()}" ${disabled ? 'disabled' : ''} />
     `);
   } else if (as === 'a') {
     return formatHtml(`
-      <a href="${href}" class="${buttonClass}" ${disabled ? 'aria-disabled="true"' : ''}>
+      <a href="${href}" class="${base()}" ${disabled ? 'aria-disabled="true"' : ''}>
         ${content}
       </a>
     `);

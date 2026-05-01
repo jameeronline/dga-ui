@@ -29,7 +29,7 @@ const badgeClassNames = tv({
       false: 'rounded',
     },
     iconOnly: {
-      true: 'p-0 w-8 h-8',
+      true: 'p-0 w-10 h-10',
       false: 'px-4 py-2',
     },
   },
@@ -41,15 +41,10 @@ function escapeHtml(text: string): string {
   return div.innerHTML;
 }
 
-export const createBadge = ({
-  label = 'badge',
-  type = 'primary',
-  rounded = false,
-  iconOnly = false,
-}: BadgeProps): string => {
+export const createBadge = ({ label = 'badge', type = 'primary', rounded = false, iconOnly = false }: BadgeProps): string => {
   const badgeClass = badgeClassNames({ type, rounded, iconOnly });
   const escapedLabel = escapeHtml(label);
-  const content = iconOnly ? '<i class="bi bi-star-fill"></i>' : escapedLabel;
+  const content = iconOnly ? '<i class="ri-star-line"></i>' : escapedLabel;
 
   return formatHtml(`
 <span class="${badgeClass}">

@@ -1,6 +1,7 @@
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
+/* tailwinds */
 @import 'tailwindcss';
 
 :root {
@@ -242,6 +243,36 @@
   --color-warning-800: oklch(40% 0.12 64.2); /* #93370D */
   --color-warning-900: oklch(34% 0.13 64.2); /* #7A2E0E */
   --color-warning-950: oklch(23% 0.07 64.2); /* #4E1D09 */
+}
+
+@theme inline {
+  /* Primary */
+  --color-primary-disabled: var(--color-primary-25);
+  --color-primary-background-subtle: var(--color-primary-50);
+  --color-primary-background: var(--color-primary-100);
+  --color-primary-border: var(--color-primary-200);
+  --color-primary-focus: var(--color-primary-300);
+  --color-primary-muted: var(--color-primary-400);
+  --color-primary: var(--color-primary-500);
+  --color-primary-hover: var(--color-primary-600);
+  --color-primary-active: var(--color-primary-700);
+  --color-primary-pressed: var(--color-primary-800);
+  --color-primary-foreground: var(--color-primary-900);
+  --color-primary-foreground-subtle: var(--color-primary-950);
+
+  /* Primary */
+  --color-secondary-disabled: var(--color-secondary-25);
+  --color-secondary-background-subtle: var(--color-secondary-50);
+  --color-secondary-background: var(--color-secondary-100);
+  --color-secondary-border: var(--color-secondary-200);
+  --color-secondary-focus: var(--color-secondary-300);
+  --color-secondary-muted: var(--color-secondary-400);
+  --color-secondary: var(--color-secondary-500);
+  --color-secondary-hover: var(--color-secondary-600);
+  --color-secondary-active: var(--color-secondary-700);
+  --color-secondary-pressed: var(--color-secondary-800);
+  --color-secondary-foreground: var(--color-secondary-900);
+  --color-secondary-foreground-subtle: var(--color-secondary-950);
 }
 
 /* .docblock-argstable-head {

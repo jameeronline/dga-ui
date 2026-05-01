@@ -17,7 +17,7 @@ const avatarClassNames = tv({
   slots: {
     base: 'relative inline-flex items-center justify-center text-white',
     content: '',
-    icon: 'bi bi-alarm',
+    icon: 'ri-alarm-line',
     text: 'font-bold',
     image: 'max-w-full rounded',
     badgeIndicator: 'absolute right-0 inline-block w-2 h-2 bg-red-600 rounded-full',

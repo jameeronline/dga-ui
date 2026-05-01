@@ -8,16 +8,14 @@ const config: StorybookConfig = {
     '../src/**/*.mdx',
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
-  addons: [
-    '@chromatic-com/storybook',
-    '@storybook/addon-vitest',
-    '@storybook/addon-a11y',
-    '@storybook/addon-docs',
-    '@whitespace/storybook-addon-html',
-  ],
+   addons: [
+     '@storybook/addon-docs',
+     '@whitespace/storybook-addon-html',
+   ],
   framework: '@storybook/html-vite',
   viteFinal: async (config) => {
     return mergeConfig(config, storybookViteConfig);
   },
+  staticDirs: ['../public'],
 };
 export default config;

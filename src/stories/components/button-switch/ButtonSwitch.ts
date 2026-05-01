@@ -51,8 +51,8 @@ function escapeHtml(text: string): string {
 export const createButtonSwitch = ({
   elementId = 'toggle-component',
   labels = [
-    { label: 'Code mode', icon: 'bi-code-slash' },
-    { label: 'Visual mode', icon: 'bi-eye' },
+    { label: 'Code mode', icon: 'ri-code-line' },
+    { label: 'Visual mode', icon: 'ri-eye-line' },
   ],
   size = 'medium',
   leadingIcon = false,

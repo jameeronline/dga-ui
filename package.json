@@ -16,11 +16,8 @@
     "format:fix": "prettier --write ."
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^5.0.1",
     "@eslint/js": "^10.0.1",
-    "@storybook/addon-a11y": "^10.2.8",
     "@storybook/addon-docs": "^10.2.8",
-    "@storybook/addon-vitest": "^10.2.8",
     "@storybook/html-vite": "^10.2.8",
     "@tailwindcss/typography": "^0.5.19",
     "@vitest/browser-playwright": "^4.0.18",
@@ -38,8 +35,15 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.7.1",
     "@tailwindcss/cli": "^4.1.18",
+    "datatables.net": "^2.3.7",
+    "datatables.net-dt": "^2.3.7",
+    "embla-carousel": "^8.6.0",
+    "flatpickr": "^4.6.13",
     "js-beautify": "^1.15.4",
+    "list.js": "^2.3.1",
+    "micromodal": "^0.6.1",
     "remixicon": "^4.9.1",
     "simply-beautiful": "^1.0.1",
     "tailwind-merge": "^3.4.1",

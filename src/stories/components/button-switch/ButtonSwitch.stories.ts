@@ -9,18 +9,7 @@ const meta: Meta<ButtonSwitchProps> = {
   parameters: {
     docs: {
       description: {
-        component: `
-# Button Switch Component
-
-A toggle switch component that allows users to switch between two options (e.g., Code mode vs Visual mode).
-
-## Use Cases
-
-- Toggle between different views or modes
-- Filter toggles in data tables
-- On/off settings
-- Switch between different content types
-`,
+        component: 'A toggle switch component that allows users to switch between two options (e.g., Code mode vs Visual mode).',
       },
     },
   },
@@ -143,8 +132,8 @@ export const WithTrailIcon: Story = {
 export const CustomLabels: Story = {
   args: {
     labels: [
-      { label: 'On', icon: 'bi-toggle-on' },
-      { label: 'Off', icon: 'bi-toggle-off' },
+      { label: 'On', icon: 'ri-toggle-fill' },
+      { label: 'Off', icon: 'ri-toggle-line' },
     ],
   },
 };

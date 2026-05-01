@@ -40,6 +40,11 @@ export const SEMANTIC_COLORS = {
   info: { label: 'Info', value: 'info' },
 } as const;
 
+export const NEUTRAL_COLORS = {
+  light: { label: 'Light', value: 'light' },
+  dark: { label: 'Dark', value: 'dark' },
+} as const;
+
 //text color options
 export const TEXT_COLORS = {
   light: { label: 'Light Text', value: 'light' },
@@ -50,6 +55,7 @@ export const TEXT_COLORS = {
 export const FULL_COLOR_OPTIONS = {
   ...BRAND_COLOR_OPTIONS,
   ...SEMANTIC_COLORS,
+  ...NEUTRAL_COLORS,
 } as const;
 
 //size options

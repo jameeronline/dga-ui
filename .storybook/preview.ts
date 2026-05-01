@@ -10,7 +10,6 @@ import 'remixicon/fonts/remixicon.css';
 
 //docs template
 import DocumentationTemplate from "./DocumentationTemplate.mdx";
-import { TableOfContents } from './components/TableOfContents';
 import { format } from '@storybook/addon-docs/blocks';
 import { getFormattedHtml } from '../src/utils/code-format';
 
@@ -68,12 +67,33 @@ const preview: Preview = {
       },
     },
 
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+     a11y: {
+       // 'todo' - show a11y violations in the test UI only
+       // 'error' - fail CI on a11y violations
+       // 'off' - skip a11y checks entirely
+       test: 'off'
+     },
+     // Disable actions globally (prevents auto-creating action handlers)
+     actions: { disable: true }, 
+     // Disable vitest addon if still loaded
+     vitest: { disable: true },
+     // Disable interactions addon if still loaded
+     interactions: { disable: true },
+     // Hide panels/tabs for Actions and Interactions in the Storybook UI
+     previewTabs: {
+       'storybook/actions/panel': { hidden: true },
+       'storybook/interactions/panel': { hidden: true },
+       // hide accessibility (a11y) panel
+       'storybook/a11y/panel': { hidden: true },
+       // hide Chromatic visual testing panel (if present)
+       'chromatic/panel': { hidden: true },
+       // hide Vitest panel (if still present)
+       'storybook/vitest/panel': { hidden: true },
+       // also hide the interactions panel by id (alternative)
+       'interactions/panel': { hidden: true },
+       // try addon-interactions panel id
+       'storybook/addon-interactions/panel': { hidden: true },
+     },
   },
 };
 

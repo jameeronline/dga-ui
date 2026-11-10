@@ -1,12 +1,12 @@
 import * as Constants from '../shared/constants';
 
 // get options keys
-export const getVariationOptions = (input: unknown) => {
+export const getVariationOptions = (input: Record<string, unknown>) => {
   return Object.keys(input);
 };
 
 // get options labels with keys
-export const getOptionsLabels = (input: unknown) => {
+export const getOptionsLabels = <T extends Record<string, { label: string }>>(input: T) => {
   return Object.entries(input).reduce(
     (acc, [key, option]) => {
       acc[key] = option.label;
@@ -23,6 +23,9 @@ export const themeOptions = getVariationOptions(Constants.THEME_OPTIONS);
 export const directionLabels = getOptionsLabels(Constants.LANG_DIRECTIONS);
 export const themeLabels = getOptionsLabels(Constants.THEME_OPTIONS);
 
+export const neutralColorOptions = getVariationOptions(Constants.NEUTRAL_COLORS);
+export const neutralColorLabels = getOptionsLabels(Constants.NEUTRAL_COLORS);
+
 export const baseColorOptions = getVariationOptions(Constants.FULL_COLOR_OPTIONS);
 export const baseColorLabels = getOptionsLabels(Constants.FULL_COLOR_OPTIONS);
 
@@ -37,8 +40,8 @@ export const buttonSizeLabels = getOptionsLabels(Constants.SIZE_OPTIONS);
 export const buttonThemeLabels = getOptionsLabels(Constants.THEME_OPTIONS);
 
 // alert options
-export const alertOptions = getVariationOptions(Constants.SEMANTIC_COLORS);
-export const alertLabels = getOptionsLabels(Constants.SEMANTIC_COLORS);
+export const alertOptions = getVariationOptions(Constants.ALERT_COLORS);
+export const alertLabels = getOptionsLabels(Constants.ALERT_COLORS);
 
 // avatar options
 export const avatarColorOptions = buttonColorOptions;

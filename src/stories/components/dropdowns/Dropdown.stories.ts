@@ -7,12 +7,20 @@ const meta: Meta<DropdownProps> = {
   title: 'Components/Dropdown',
   tags: ['autodocs'],
   parameters: {
+    // Center the story in the canvas
+    layout: 'centered',
     docs: {
+      // Keep the decorator wrapper out of the code panel snippet
+      source: { excludeDecorators: true },
       description: {
-        component: 'The Dropdown component displays a button with a collapsible menu of items.',
+        component: 'The Dropdown component displays a button that opens a popover menu of items, anchored to the trigger.',
       },
     },
   },
+  decorators: [
+    // Give the canvas a predefined minimum height so the trigger stays centered
+    (Story) => `<div style="display: flex; align-items: center; justify-content: center; width: 100%; min-height: 600px;">${Story()}</div>`,
+  ],
   render: createDropdown,
   argTypes: {
     label: {
@@ -21,9 +29,9 @@ const meta: Meta<DropdownProps> = {
       table: {
         category: 'Content',
         type: { summary: 'string' },
-        defaultValue: { summary: 'Choose One' },
+        defaultValue: { summary: 'Dropdown Menu' },
       },
-      defaultValue: 'Choose One',
+      defaultValue: 'Dropdown Menu',
       description: 'The label for the dropdown button.',
     },
     menuItems: {
@@ -71,25 +79,25 @@ const meta: Meta<DropdownProps> = {
     },
   },
   args: {
-    label: 'Choose One',
+    label: 'Dropdown Menu',
     variant: 'primary',
     withIcon: true,
     withDescription: true,
     menuItems: [
       {
-        title: 'Dashboard',
+        title: 'Dashboard Overview',
         description: 'Quick overview of all basic metrics and settings',
-        icon: 'ri-pie-chart-line',
+        icon: 'hgi hgi-stroke hgi-rounded hgi-pie-chart',
       },
       {
         title: 'Metrics and analytics',
         description: 'Detailed analytic data reviews management',
-        icon: 'ri-line-chart-line',
+        icon: 'hgi hgi-stroke hgi-rounded hgi-chart-03',
       },
       {
         title: 'User settings',
         description: 'User settings allow you to configure your email preferences',
-        icon: 'ri-settings-4-line',
+        icon: 'hgi hgi-stroke hgi-rounded hgi-setting-07',
       },
     ],
   },

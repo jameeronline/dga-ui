@@ -40,6 +40,11 @@ export const SEMANTIC_COLORS = {
   info: { label: 'Info', value: 'info' },
 } as const;
 
+export const ALERT_COLORS = {
+  neutral: { label: 'Neutral', value: 'neutral' },
+  ...SEMANTIC_COLORS,
+} as const;
+
 export const NEUTRAL_COLORS = {
   light: { label: 'Light', value: 'light' },
   dark: { label: 'Dark', value: 'dark' },
@@ -63,7 +68,7 @@ export const SIZE_OPTIONS = {
   small: { label: 'Small', value: 'small' },
   medium: { label: 'Medium', value: 'medium' },
   large: { label: 'Large', value: 'large' },
-  xl: { label: 'Extra Large', value: 'xl' },
+  //xl: { label: 'Extra Large', value: 'xl' },
 } as const;
 
 //portal options

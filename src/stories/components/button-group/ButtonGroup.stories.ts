@@ -21,7 +21,7 @@ const meta: Meta<ButtonGroupProps> = {
       table: {
         category: 'Content',
         type: { summary: 'number' },
-        defaultValue: { summary: 3 },
+        defaultValue: { summary: '3' },
       },
       defaultValue: 3,
       description: 'The number of buttons in the group.',

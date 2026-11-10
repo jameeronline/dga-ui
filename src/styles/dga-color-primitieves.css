@@ -1,0 +1,115 @@
+:root {
+  --font-ibm-plex-sans: 'IBM Plex Sans', sans-serif;
+
+  /* SA Color Palette */
+  --color-primary-25: oklch(98.7% 0.007 162.7); /* #F7FDF9 */
+  --color-primary-50: oklch(98.2% 0.01 162.7); /* #F3FCF6 */
+  --color-primary-100: oklch(95.4% 0.026 162.7); /* #DFF6E7 */
+  --color-primary-200: oklch(89.4% 0.053 162.7); /* #B8EACB */
+  --color-primary-300: oklch(82.1% 0.088 162.7); /* #88D8AD */
+  --color-primary-400: oklch(72.7% 0.126 162.7); /* #54C08A */
+  --color-primary-500: oklch(56.9% 0.113 162.7); /* #25935F */
+  --color-primary-600: oklch(50.8% 0.106 162.7); /* #1B8354 */
+  --color-primary-700: oklch(42.3% 0.089 162.7); /* #166A45 */
+  --color-primary-800: oklch(35.7% 0.075 162.7); /* #14573A */
+  --color-primary-900: oklch(29.6% 0.063 162.7); /* #104631 */
+  --color-primary-950: oklch(19.3% 0.041 162.7); /* #092A1E */
+
+  /* Secondary (Gold) Palette */
+  --color-secondary-25: oklch(99.6% 0.005 95); /* #FFFEF7 */
+  --color-secondary-50: oklch(99.6% 0.007 95); /* #FFFEF2 */
+  --color-secondary-100: oklch(98.9% 0.017 95); /* #FFFCE6 */
+  --color-secondary-200: oklch(95.4% 0.047 95); /* #FCF3BD */
+  --color-secondary-300: oklch(92.4% 0.076 90.1); /* #FAE996 */
+  --color-secondary-400: oklch(87.5% 0.147 88.5); /* #F7D54D */
+  --color-secondary-500: oklch(79.7% 0.187 84.8); /* #F5BD02 */
+  --color-secondary-600: oklch(70.7% 0.167 84.8); /* #DBA102 */
+  --color-secondary-700: oklch(59.8% 0.141 84.8); /* #B87B02 */
+  --color-secondary-800: oklch(48.5% 0.114 84.8); /* #945C01 */
+  --color-secondary-900: oklch(36.3% 0.086 84.8); /* #6E3C00 */
+  --color-secondary-950: oklch(24.3% 0.057 84.8); /* #472400 */
+
+  /* Lavender/Tertiary Palette */
+  --color-tertiary-25: oklch(99.1% 0.002 300); /* #FEFCFF */
+  --color-tertiary-50: oklch(97.3% 0.007 300); /* #F9F5FA */
+  --color-tertiary-100: oklch(93.8% 0.016 303.4); /* #F2E9F5 */
+  --color-tertiary-200: oklch(85.8% 0.044 303.4); /* #E1CCE8 */
+  --color-tertiary-300: oklch(76.7% 0.076 303.4); /* #CCADD9 */
+  --color-tertiary-400: oklch(59.9% 0.113 303.4); /* #A57BBA */
+  --color-tertiary-500: oklch(47.4% 0.155 303.4); /* #80519F */
+  --color-tertiary-600: oklch(40.8% 0.133 303.4); /* #6D428F */
+  --color-tertiary-700: oklch(31.6% 0.103 303.4); /* #532D75 */
+  --color-tertiary-800: oklch(24% 0.087 303.4); /* #3D1D5E */
+  --color-tertiary-900: oklch(16.5% 0.075 303.4); /* #281047 */
+  --color-tertiary-950: oklch(9.6% 0.05 303.4); /* #16072E */
+
+  /* Natural (Gray) Palette */
+  --color-natural-25: oklch(98.8% 0.001 259); /* #FCFCFD */
+  --color-natural-50: oklch(98% 0.002 259); /* #F9FAFB */
+  --color-natural-100: oklch(96.2% 0.004 259); /* #F3F4F6 */
+  --color-natural-200: oklch(92% 0.008 259); /* #E5E7EB */
+  --color-natural-300: oklch(86.2% 0.011 259); /* #D2D6DB */
+  --color-natural-400: oklch(69.7% 0.019 252.3); /* #9DA4AE */
+  --color-natural-500: oklch(52.7% 0.015 252.3); /* #6C737F */
+  --color-natural-600: oklch(43% 0.012 252.3); /* #4D5761 */
+  --color-natural-700: oklch(34.6% 0.015 252.3); /* #384250 */
+  --color-natural-800: oklch(26.1% 0.021 252.3); /* #1F2A37 */
+  --color-natural-900: oklch(18.2% 0.024 252.3); /* #111927 */
+  --color-natural-950: oklch(13.6% 0.016 252.3); /* #0D121C */
+
+  /* Error/Danger Palette */
+  --color-danger-25: oklch(99.1% 0.005 16.1); /* #FFFBFA */
+  --color-danger-50: oklch(97.2% 0.015 16.1); /* #FEF3F2 */
+  --color-danger-100: oklch(93.9% 0.035 16.1); /* #FEE4E2 */
+  --color-danger-200: oklch(88.1% 0.07 16.1); /* #FECDCA */
+  --color-danger-300: oklch(78.5% 0.13 16.1); /* #FDA29B */
+  --color-danger-400: oklch(67.5% 0.19 16.1); /* #F97066 */
+  --color-danger-500: oklch(59.4% 0.22 25.4); /* #F04438 */
+  --color-danger-600: oklch(50.3% 0.2 25.4); /* #D92D20 */
+  --color-danger-700: oklch(41.4% 0.17 25.4); /* #B42318 */
+  --color-danger-800: oklch(34.1% 0.14 25.4); /* #912018 */
+  --color-danger-900: oklch(29.6% 0.12 25.4); /* #7A271A */
+  --color-danger-950: oklch(21.5% 0.09 25.4); /* #55160C */
+
+  /* Success Palette */
+  --color-success-25: oklch(98.9% 0.007 162.7); /* #F6FEF9 */
+  --color-success-50: oklch(97.8% 0.015 162.7); /* #ECFDF3 */
+  --color-success-100: oklch(95.4% 0.027 162.7); /* #DCFAE6 */
+  --color-success-200: oklch(89.4% 0.058 162.7); /* #ABEFC6 */
+  --color-success-300: oklch(82.2% 0.103 162.7); /* #75E0A7 */
+  --color-success-400: oklch(73.5% 0.137 162.7); /* #47CD89 */
+  --color-success-500: oklch(64.6% 0.165 159.4); /* #17B26A */
+  --color-success-600: oklch(54.4% 0.139 159.4); /* #079455 */
+  --color-success-700: oklch(44.3% 0.113 159.4); /* #067647 */
+  --color-success-800: oklch(36.1% 0.092 159.4); /* #085D3A */
+  --color-success-900: oklch(30.4% 0.077 159.4); /* #074D31 */
+  --color-success-950: oklch(21% 0.053 159.4); /* #053321 */
+
+  /* Info Palette */
+  --color-info-25: oklch(98.1% 0.01 248.8); /* #F5FAFF */
+  --color-info-50: oklch(97% 0.01 230); /* #EFF8FE */
+  --color-info-100: oklch(91.7% 0.038 248.8); /* #D1E9FF */
+  --color-info-200: oklch(86.5% 0.065 248.8); /* #B2DDFF */
+  --color-info-300: oklch(79% 0.1 248.8); /* #84CAFF */
+  --color-info-400: oklch(71% 0.13 248.8); /* #53B1FD */
+  --color-info-500: oklch(63.1% 0.16 248.8); /* #2E90FA */
+  --color-info-600: oklch(52.8% 0.17 248.8); /* #1570EF */
+  --color-info-700: oklch(45% 0.15 248.8); /* #175CD3 */
+  --color-info-800: oklch(37.5% 0.13 248.8); /* #1849A9 */
+  --color-info-900: oklch(33% 0.11 248.8); /* #194185 */
+  --color-info-950: oklch(23% 0.08 248.8); /* #102A56 */
+
+  /* Warning Palette */
+  --color-warning-25: oklch(99.2% 0.005 84); /* #FFFCF5 */
+  --color-warning-50: oklch(98.6% 0.01 84); /* #FFFAEB */
+  --color-warning-100: oklch(95.6% 0.035 84); /* #FEF0C7 */
+  --color-warning-200: oklch(90.1% 0.08 84); /* #FEDF89 */
+  --color-warning-300: oklch(83.6% 0.13 84); /* #FEC84B */
+  --color-warning-400: oklch(77.5% 0.16 75); /* #FDB022 */
+  --color-warning-500: oklch(71.4% 0.18 64.2); /* #F79009 */
+  --color-warning-600: oklch(59% 0.16 64.2); /* #DC6803 */
+  --color-warning-700: oklch(48% 0.14 64.2); /* #B54708 */
+  --color-warning-800: oklch(40% 0.12 64.2); /* #93370D */
+  --color-warning-900: oklch(34% 0.13 64.2); /* #7A2E0E */
+  --color-warning-950: oklch(23% 0.07 64.2); /* #4E1D09 */
+}

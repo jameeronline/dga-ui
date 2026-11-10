@@ -1,6 +1,7 @@
 import { tv } from 'tailwind-variants';
 
-import type { DropdownVariant } from '@/types/index';
+import type { ButtonColorVariant, DropdownVariant } from '@/types/index';
+import { createButton } from '@/stories/components/button/Button';
 import { formatHtml } from '@/utils/code-format';
 
 export interface DropdownItem {
@@ -23,61 +24,86 @@ function escapeHtml(text: string): string {
   return div.innerHTML;
 }
 
+// Used to keep popover ids unique when several dropdowns share a page.
+let dropdownIdCounter = 0;
+
 const dropdownClassNames = tv({
   slots: {
-    base: 'relative inline-flex',
-    buttonEl:
-      'inline-flex items-center justify-center h-12 gap-2 px-5 text-md font-medium tracking-wide transition duration-300 rounded focus-visible:outline-none whitespace-nowrap disabled:cursor-not-allowed disabled:shadow-none',
-    menuEl: 'absolute z-20 flex flex-col py-2 mt-1 list-none bg-white rounded shadow-md w-72 top-full shadow-slate-500/10',
+    base: 'inline-flex',
+    // The menu is a popover placed in the top layer. It uses the button as its
+    // implicit anchor (via popovertarget) and CSS anchor positioning to sit
+    // directly below it, flipping above when there is not enough space.
+    menuEl:
+      'fixed z-20 m-0 mt-1 w-72 list-none flex-col overflow-y-auto rounded border-0 bg-white px-0 py-2 shadow-md shadow-slate-500/10 open:flex [inset:auto] [top:anchor(bottom)] [left:anchor(left)] [position-anchor:auto] [position-try-fallbacks:flip-block]',
     menuItemEl: 'flex items-start justify-start gap-2 p-2 px-5 transition-colors duration-300 text-slate-500 focus:outline-none focus-visible:outline-none',
+    leadIcon: '',
   },
   variants: {
     variant: {
       primary: {
-        buttonEl: 'text-white bg-primary-800 hover:bg-primary-900 focus:bg-primary-950 disabled:border-primary-300 disabled:bg-primary-300',
         menuItemEl: 'hover:bg-primary-50 hover:text-primary-800 focus:bg-primary-50 focus:text-primary-900',
       },
       secondary: {
-        buttonEl: 'text-white bg-secondary-500 hover:bg-secondary-600 focus:bg-secondary-700 disabled:border-secondary-300 disabled:bg-secondary-300',
         menuItemEl: 'hover:bg-secondary-50 hover:text-secondary-500 focus:bg-secondary-50 focus:text-secondary-600',
       },
       tertiary: {
-        buttonEl: 'text-white bg-tertiary-500 hover:bg-tertiary-600 focus:bg-tertiary-700 disabled:border-tertiary-300 disabled:bg-tertiary-300',
         menuItemEl: 'hover:bg-tertiary-50 hover:text-tertiary-500 focus:bg-tertiary-50 focus:text-tertiary-700',
       },
       danger: {
-        buttonEl: 'text-white bg-danger-500 hover:bg-danger-600 focus:bg-danger-700 disabled:border-danger-300 disabled:bg-danger-300',
         menuItemEl: 'hover:bg-danger-50 hover:text-danger-500 focus:bg-danger-50 focus:text-danger-700',
       },
       success: {
-        buttonEl: 'text-white bg-success-500 hover:bg-success-600 focus:bg-success-700 disabled:border-success-300 disabled:bg-success-300',
         menuItemEl: 'hover:bg-success-50 hover:text-success-500 focus:bg-success-50 focus:text-success-700',
       },
       info: {
-        buttonEl: 'text-white bg-info-500 hover:bg-info-600 focus:bg-info-700 disabled:border-info-300 disabled:bg-info-300',
         menuItemEl: 'hover:bg-info-50 hover:text-info-500 focus:bg-info-50 focus:text-info-700',
       },
       warning: {
-        buttonEl: 'text-white bg-warning-500 hover:bg-warning-600 focus:bg-warning-700 disabled:border-warning-300 disabled:bg-warning-300',
         menuItemEl: 'hover:bg-warning-50 hover:text-warning-500 focus:bg-warning-50 focus:text-warning-700',
       },
     },
   },
 });
 
+// Dropdown variants map 1:1 to the Button component's color variants.
+const variantToButtonType: Record<DropdownVariant, ButtonColorVariant> = {
+  primary: 'primary',
+  secondary: 'secondary',
+  tertiary: 'tertiary',
+  danger: 'danger',
+  success: 'success',
+  info: 'info',
+  warning: 'warning',
+};
+
 export const createDropdown = ({
-  label = 'Choose One',
+  label = 'Dropdown Menu',
   menuItems = [],
   variant = 'primary',
   withIcon = true,
   withDescription = true,
 }: DropdownProps): string => {
-  const { base, buttonEl, menuEl, menuItemEl } = dropdownClassNames({
+  const { base, menuEl, menuItemEl, leadIcon } = dropdownClassNames({
     variant: variant,
   });
 
-  const dropdownId = `dropdown-${Math.random().toString(36).substr(2, 9)}`;
-  const escapedLabel = escapeHtml(label);
+  const dropdownId = `dropdown-${++dropdownIdCounter}`;
+  const buttonType = variantToButtonType[variant];
+
+  // Render the trigger using the shared Button component so it is a native,
+  // keyboard-focusable <button> with consistent button styling.
+  let triggerHtml = createButton({
+    label,
+    type: buttonType,
+    size: 'large',
+    icon: true,
+    iconName: 'hgi hgi-stroke hgi-rounded hgi-arrow-down-01',
+    iconPosition: 'right',
+    htmlType: 'button',
+  });
+
+  // Add the popovertarget attribute so the button opens the popover menu.
+  triggerHtml = triggerHtml.replace('<button ', `<button popovertarget="${dropdownId}" `);
 
   const menuItemsHtml = menuItems
     .map((item) => {
@@ -101,13 +127,8 @@ export const createDropdown = ({
 
   return formatHtml(`
     <div class="${base()}">
-      <button data-dropdown-toggle="${dropdownId}" class="${buttonEl()}">
-        <span>${escapedLabel}</span>
-        <span class="relative only:-mx-5">
-          <i class="ri-arrow-down-line text-xl"></i>
-        </span>
-      </button>
-      <ul data-dropdown-menu="${dropdownId}" class="${menuEl()}">
+      ${triggerHtml}
+      <ul id="${dropdownId}" popover class="${menuEl()}">
         ${menuItemsHtml}
       </ul>
     </div>

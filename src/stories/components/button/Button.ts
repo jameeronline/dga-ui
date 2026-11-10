@@ -18,46 +18,55 @@ export interface ButtonProps {
   full?: boolean;
   as?: 'button' | 'input' | 'a';
   href?: string;
+  /** Invoker command for the native <dialog> element, e.g. `show-modal` or `close`. */
+  command?: string;
+  /** Id of the dialog the invoker points at, e.g. the dialog's `id`. */
+  commandfor?: string;
+  /** Native button type. Use `submit` for buttons that submit a form. */
+  htmlType?: 'button' | 'submit' | 'reset';
+  /** Id of the form the button belongs to. Useful for submit buttons rendered outside the form. */
+  form?: string;
 }
 
 const buttonClassNames = tv({
   slots: {
-    base: `inline-flex items-center justify-center gap-2 font-medium tracking-wide transition duration-300 whitespace-nowrap focus-visible:outline-none  focus-visible:ring-2 focus-visible:ring-offset-2`,
+    base: `inline-flex items-center justify-center gap-2 font-medium h-10 transition duration-300 whitespace-nowrap focus-ring-outline `,
     iconEl: `text-current`,
+    textEl: `pointer-events-none`,
   },
   variants: {
     type: {
-      primary: 'bg-primary-800 hover:bg-primary-900 focus-visible:ring-primary-400 text-white',
-      secondary: 'bg-secondary-800 hover:bg-secondary-900 focus-visible:ring-secondary-400 text-white',
-      tertiary: 'bg-tertiary-500 hover:bg-tertiary-600 focus-visible:ring-tertiary-400 text-white',
-      danger: 'bg-danger-600 hover:bg-danger-700 focus-visible:ring-danger-400 text-white',
-      success: 'bg-success-600 hover:bg-success-700 focus-visible:ring-success-400 text-white',
-      info: 'bg-info-600 hover:bg-info-700 focus-visible:ring-info-400 text-white',
-      warning: 'bg-warning-500 hover:bg-warning-600 focus-visible:ring-warning-400 text-white',
-      light: 'bg-gray-200 hover:bg-gray-300 focus-visible:ring-gray-400 text-gray-700',
-      dark: 'bg-gray-800 hover:bg-gray-900 focus-visible:ring-gray-400 text-white',
+      primary: 'bg-primary-600 hover:bg-primary-700 active:bg-primary-900 selected:bg-primary-800 text-white',
+      secondary: 'bg-secondary-600 hover:bg-secondary-700 active:bg-secondary-900 selected:bg-secondary-800 text-white',
+      tertiary: 'bg-tertiary-600 hover:bg-tertiary-700 active:bg-tertiary-900 selected:bg-tertiary-800 text-white',
+      danger: 'bg-danger-600 hover:bg-danger-700 active:bg-danger-900 selected:bg-danger-800 text-white',
+      success: 'bg-success-600 hover:bg-success-700 active:bg-success-900 selected:bg-success-800 text-white',
+      info: 'bg-info-600 hover:bg-info-700 active:bg-info-900 selected:bg-info-800 text-white',
+      warning: 'bg-warning-600 hover:bg-warning-700 active:bg-warning-900 selected:bg-warning-800 text-white',
+      light: 'bg-gray-200 hover:bg-gray-300 text-gray-700',
+      dark: 'bg-gray-800 hover:bg-gray-900 text-white',
     },
     size: {
-      xl: {
-        base: 'h-16 px-8 text-xl',
-        iconEl: 'text-3xl',
-      },
+      // xl: {
+      //   base: 'h-16 px-8 text-xl',
+      //   iconEl: 'text-3xl',
+      // },
       large: {
-        base: 'h-14 px-6 text-base',
+        base: 'h-10 px-4 text-base',
         iconEl: 'text-2xl',
       },
       medium: {
-        base: 'h-12 px-5 text-sm',
+        base: 'h-8 px-3 text-sm',
         iconEl: 'text-xl',
       },
       small: {
-        base: 'h-10 px-4 text-xs',
+        base: 'h-6 px-2 text-xs',
         iconEl: 'text-lg',
       },
     },
     rounded: {
       true: 'rounded-full',
-      false: 'rounded-md',
+      false: 'rounded-sm',
     },
     outline: {
       true: '',
@@ -79,37 +88,37 @@ const buttonClassNames = tv({
     {
       type: 'primary',
       outline: true,
-      class: 'bg-transparent border border-primary-800 text-primary-800 hover:bg-primary-800 hover:text-white',
+      class: 'bg-transparent border border-primary-200 text-primary-600 hover:bg-primary-100',
     },
     {
       type: 'secondary',
       outline: true,
-      class: 'bg-transparent border border-secondary-800 text-secondary-800 hover:bg-secondary-800 hover:text-white',
+      class: 'bg-transparent border border-secondary-200 text-secondary-600 hover:bg-secondary-100',
     },
     {
       type: 'tertiary',
       outline: true,
-      class: 'bg-transparent border border-tertiary-500 text-tertiary-500 hover:bg-tertiary-500 hover:text-white',
+      class: 'bg-transparent border border-tertiary-200 text-tertiary-600 hover:bg-tertiary-100',
     },
     {
       type: 'danger',
       outline: true,
-      class: 'bg-transparent border border-danger-600 text-danger-600 hover:bg-danger-600 hover:text-white',
+      class: 'bg-transparent border border-danger-200 text-danger-600 hover:bg-danger-100',
     },
     {
       type: 'success',
       outline: true,
-      class: 'bg-transparent border border-success-600 text-success-600 hover:bg-success-600 hover:text-white',
+      class: 'bg-transparent border border-success-200 text-success-600 hover:bg-success-100',
     },
     {
       type: 'info',
       outline: true,
-      class: 'bg-transparent border border-info-600 text-info-600 hover:bg-info-600 hover:text-white',
+      class: 'bg-transparent border border-info-200 text-info-600 hover:bg-info-100',
     },
     {
       type: 'warning',
       outline: true,
-      class: 'bg-transparent border border-warning-500 text-warning-500 hover:bg-warning-500 hover:text-white',
+      class: 'bg-transparent border border-warning-200 text-warning-600 hover:bg-warning-100',
     },
     {
       type: 'light',
@@ -166,11 +175,11 @@ const buttonClassNames = tv({
       link: true,
       class: 'bg-transparent hover:bg-gray-700 text-gray-800 hover:text-white underline',
     },
-    {
-      size: 'xl',
-      iconOnly: true,
-      class: 'w-16 p-0',
-    },
+    // {
+    //   size: 'xl',
+    //   iconOnly: true,
+    //   class: 'w-16 p-0',
+    // },
     {
       size: 'large',
       iconOnly: true,
@@ -237,6 +246,16 @@ const buttonClassNames = tv({
     //   class: 'disabled:bg-gray-400',
     // },
   ],
+  defaultVariants: {
+    type: 'primary',
+    size: 'large',
+    rounded: false,
+    outline: false,
+    link: false,
+    iconOnly: false,
+    full: false,
+    disabled: false,
+  },
 });
 
 function escapeHtml(text: string): string {
@@ -248,7 +267,7 @@ function escapeHtml(text: string): string {
 export const createButton = ({
   label = 'Button',
   type = 'primary',
-  size = 'medium',
+  size = 'large',
   rounded = false,
   outline = false,
   link = false,
@@ -260,8 +279,12 @@ export const createButton = ({
   as = 'button',
   href = '#',
   disabled = false,
+  command = '',
+  commandfor = '',
+  htmlType = 'button',
+  form = '',
 }: ButtonProps): string => {
-  const { base, iconEl } = buttonClassNames({
+  const { base, iconEl, textEl } = buttonClassNames({
     type,
     size,
     rounded,
@@ -279,20 +302,29 @@ export const createButton = ({
   const escapedLabel = escapeHtml(label);
   const content = `
     ${iconLeft}
-    ${!iconOnly ? `<span>${escapedLabel}</span>` : ''}
+    ${!iconOnly ? `<span class="${textEl()}">${escapedLabel}</span>` : ''}
     ${iconOnlyContent}
     ${iconRight}
   `;
 
+  const invokerAttributes = [
+    commandfor ? `commandfor="${commandfor}"` : '',
+    command ? `command="${command}"` : '',
+    form ? `form="${form}"` : '',
+    disabled ? 'disabled' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   if (as === 'button') {
     return formatHtml(`
-      <button type="button" class="${base()}" ${disabled ? 'disabled' : ''}>
+      <button type="${htmlType}" class="${base()}" ${invokerAttributes}>
         ${content}
       </button>
     `);
   } else if (as === 'input') {
     return formatHtml(`
-      <input type="button" value="${escapedLabel}" class="${base()}" ${disabled ? 'disabled' : ''} />
+      <input type="${htmlType}" value="${escapedLabel}" class="${base()}" ${invokerAttributes} />
     `);
   } else if (as === 'a') {
     return formatHtml(`

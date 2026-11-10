@@ -1,63 +1,73 @@
-import { createBreadcrumb } from "./Breadcrumb";
+import { createBreadcrumb } from './Breadcrumb';
 
 export default {
-  title: "Navigation / Breadcrumb",
-  tags: ["autodocs"],
+  title: 'Navigation / Breadcrumb',
+  tags: ['autodocs'],
   render: createBreadcrumb,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'A breadcrumb is a navigation aid that helps users understand their current location within a website or application. It provides a trail of links that represent the hierarchy of pages leading to the current page.',
+      },
+    },
+  },
   argTypes: {
     links: {
-      control: { type: "object" },
+      name: 'Links',
+      control: { type: 'object' },
       defaultValue: [
-        { name: "Home", url: "#" },
-        { name: "Projects", url: "#" },
-        { name: "UI Components", url: "#" },
-        { name: "Project", url: "#" },
+        { name: 'Home', url: '#' },
+        { name: 'Design System', url: '#' },
+        { name: 'UI Components', url: '#' },
+        { name: 'Breadcrumb', url: '#' },
       ],
-      description:
-        "Array of breadcrumb link objects. Each link object should have a name and a URL.",
+      table: {
+        type: { summary: 'array' },
+        defaultValue: { summary: '[]' },
+      },
+      description: 'Array of breadcrumb link objects. Each link object should have a name and a URL.',
     },
     withLeadingIcon: {
-      control: { type: "boolean" },
+      name: 'With Leading Icon',
+      control: { type: 'boolean' },
       defaultValue: true,
-      description:
-        "Toggle to include a leading icon next to each breadcrumb link.",
-    },
-    isElevated: {
-      control: { type: "boolean" },
-      defaultValue: true,
-      description:
-        "Toggle to apply shadow and elevation styling to the breadcrumb.",
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+      description: 'Toggle to include a leading icon next to each breadcrumb link.',
     },
     isOnlyLeadingIcon: {
-      control: { type: "boolean" },
+      name: 'Only Leading Icon',
+      control: { type: 'boolean' },
       defaultValue: false,
-      description:
-        "Toggle to display only the leading icon without text for each breadcrumb link.",
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      description: 'Toggle to display only the leading icon without text for each breadcrumb link.',
     },
   },
   args: {
     links: [
-      { name: "Home", url: "#" },
-      { name: "Projects", url: "#" },
-      { name: "UI Components", url: "#" },
-      { name: "Project", url: "#" },
+      { name: 'Home', url: '#' },
+      { name: 'Design System', url: '#' },
+      { name: 'UI Components', url: '#' },
+      { name: 'Breadcrumb', url: '#' },
     ],
     withLeadingIcon: false,
-    isElevated: false,
     isOnlyLeadingIcon: false,
   },
 };
 
 // Variants
 export const DefaultBreadcrumb = {
-  args: {
-    isElevated: false,
-  },
+  args: {},
 };
 
 export const LeadingIcon = {
   args: {
-    isElevated: false,
     withLeadingIcon: true,
   },
 };
@@ -68,22 +78,23 @@ export const OnlyLeadingIcon = {
   },
 };
 
-export const DefaultBreadcrumbWithElevated = {
+export const SingleItem = {
   args: {
-    isElevated: true,
-  },
-};
-
-export const LeadingIconWithElevated = {
-  args: {
-    isElevated: true,
     withLeadingIcon: true,
+    links: [{ name: 'Home', url: '#' }],
   },
 };
 
-export const OnlyLeadingIconWithElevated = {
+export const LongPath = {
   args: {
-    isElevated: true,
-    isOnlyLeadingIcon: true,
+    links: [
+      { name: 'Home', url: '#' },
+      { name: 'Design System', url: '#' },
+      { name: 'Foundations', url: '#' },
+      { name: 'Components', url: '#' },
+      { name: 'Navigation', url: '#' },
+      { name: 'Breadcrumbs', url: '#' },
+      { name: 'Long Path', url: '#' },
+    ],
   },
 };

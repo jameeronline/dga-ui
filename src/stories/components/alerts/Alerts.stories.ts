@@ -28,6 +28,17 @@ const meta: Meta<AlertProps> = {
       defaultValue: 'success',
       description: 'Type of alert',
     },
+    filled: {
+      type: 'boolean',
+      name: 'Filled',
+      table: {
+        category: 'Appearance',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+      defaultValue: false,
+      description: 'Filled alert style',
+    },
     title: {
       name: 'Title',
       control: 'text',
@@ -110,6 +121,7 @@ const meta: Meta<AlertProps> = {
   },
   args: {
     type: 'danger',
+    filled: false,
     title: '',
     message: 'An error occurred. Please try again or contact support if the problem persists.',
     leadingIcon: false,

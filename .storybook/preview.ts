@@ -71,28 +71,28 @@ const preview: Preview = {
        // 'todo' - show a11y violations in the test UI only
        // 'error' - fail CI on a11y violations
        // 'off' - skip a11y checks entirely
-       test: 'off'
+       test: 'off',
      },
      // Disable actions globally (prevents auto-creating action handlers)
      actions: { disable: true }, 
      // Disable vitest addon if still loaded
      vitest: { disable: true },
      // Disable interactions addon if still loaded
-     interactions: { disable: true },
+     interactions: { disable: false },
      // Hide panels/tabs for Actions and Interactions in the Storybook UI
      previewTabs: {
-       'storybook/actions/panel': { hidden: true },
-       'storybook/interactions/panel': { hidden: true },
+       'storybook/actions/panel': { hidden: false },
+       'storybook/interactions/panel': { hidden: false },
        // hide accessibility (a11y) panel
-       'storybook/a11y/panel': { hidden: true },
+       'storybook/a11y/panel': { hidden: false },
        // hide Chromatic visual testing panel (if present)
-       'chromatic/panel': { hidden: true },
+       'chromatic/panel': { hidden: false },
        // hide Vitest panel (if still present)
-       'storybook/vitest/panel': { hidden: true },
+       'storybook/vitest/panel': { hidden: false },
        // also hide the interactions panel by id (alternative)
-       'interactions/panel': { hidden: true },
+       'interactions/panel': { hidden: false },
        // try addon-interactions panel id
-       'storybook/addon-interactions/panel': { hidden: true },
+       'storybook/addon-interactions/panel': { hidden: false },
      },
   },
 };

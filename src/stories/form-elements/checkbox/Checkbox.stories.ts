@@ -16,7 +16,7 @@ const meta: Meta<CheckboxProps> = {
   argTypes: {
     checkboxes: {
       name: 'Checkboxes',
-      control: { type: 'array' },
+      control: { type: 'object' },
       table: {
         category: 'Content',
         type: { summary: 'string[]' },

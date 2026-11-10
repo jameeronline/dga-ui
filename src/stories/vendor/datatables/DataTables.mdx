@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import * as DataTablesStories from './DataTables.stories';
+import DocumentationTemplate from '../../../../.storybook/DocumentationTemplate.mdx';
+
+<Meta of={DataTablesStories} />
+
+<DocumentationTemplate
+  guidelines={
+    <>
+      <h3>Dos</h3>
+      <ul>
+        <li>Use data tables when users need to scan, compare, and act on many records at once.</li>
+        <li>Keep column titles short and descriptive so they stay readable when sorted.</li>
+        <li>Enable search when the dataset is large enough that scanning every row is impractical.</li>
+        <li>Set a page length that matches the viewport and the density of the data.</li>
+      </ul>
+      <h3>Don'ts</h3>
+      <ul>
+        <li>Don't use a data table for small, static lists — use a simple list instead.</li>
+        <li>Don't disable pagination on very large datasets; it hurts performance and usability.</li>
+        <li>Don't mix unrelated data types in a single column.</li>
+        <li>Don't rely on color alone to convey row state or selection.</li>
+      </ul>
+    </>
+  }
+  accessibility={
+    <>
+      <p>DataTables renders a semantic table with a header row, so screen readers announce column headers for each cell.</p>
+      <ul>
+        <li>Provide a clear, unique title for each column.</li>
+        <li>Keep the search input labelled — the default placeholder is not a substitute for a label.</li>
+        <li>Ensure sorting and pagination controls are reachable by keyboard.</li>
+        <li>When row selection is enabled, expose the selected state programmatically, not only through styling.</li>
+      </ul>
+    </>
+  }
+/>

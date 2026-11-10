@@ -66,11 +66,23 @@ const meta: Meta<BadgeProps> = {
       defaultValue: false,
       description: 'If true, the badge will only display an icon instead of text.',
     },
+    border: {
+      name: 'Border',
+      control: { type: 'boolean' },
+      table: {
+        category: 'Appearance',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+      defaultValue: false,
+      description: 'If true, the badge will have a border.',
+    },
   },
   args: {
     type: 'primary',
     rounded: false,
     iconOnly: false,
+    border: false,
     label: 'Badge',
   },
 };
@@ -93,6 +105,7 @@ export const Primary: Story = {
     type: 'primary',
     rounded: false,
     iconOnly: false,
+    border: false,
   },
 };
 
@@ -108,6 +121,7 @@ export const SecondaryRounded: Story = {
     type: 'secondary',
     rounded: true,
     iconOnly: false,
+    border: false,
   },
 };
 
@@ -123,6 +137,7 @@ export const DangerNotRounded: Story = {
     type: 'danger',
     rounded: false,
     iconOnly: false,
+    border: false,
   },
 };
 
@@ -138,6 +153,7 @@ export const SuccessIconOnly: Story = {
     type: 'success',
     rounded: true,
     iconOnly: true,
+    border: false,
   },
 };
 
@@ -153,6 +169,7 @@ export const InfoNotRoundedIconOnly: Story = {
     type: 'info',
     rounded: false,
     iconOnly: true,
+    border: false,
   },
 };
 
@@ -168,6 +185,7 @@ export const WarningRoundedIconOnly: Story = {
     type: 'warning',
     rounded: true,
     iconOnly: true,
+    border: false,
   },
 };
 
@@ -183,6 +201,7 @@ export const Light: Story = {
     type: 'light',
     rounded: true,
     iconOnly: false,
+    border: false,
   },
 };
 
@@ -198,6 +217,23 @@ export const DarkNotRounded: Story = {
     type: 'dark',
     rounded: false,
     iconOnly: false,
+    border: false,
+  },
+};
+
+export const WithBorder: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'A primary badge with a border.',
+      },
+    },
+  },
+  args: {
+    type: 'primary',
+    rounded: false,
+    iconOnly: false,
+    border: true,
   },
 };
 
@@ -208,30 +244,36 @@ export const AllVariants: Story = {
     const roundedBadges: string[] = [];
     const iconOnlyBadges: string[] = [];
     const roundedIconOnlyBadges: string[] = [];
+    const borderBadges: string[] = [];
     for (const t of types) {
       const label = t.charAt(0).toUpperCase() + t.slice(1);
       badges.push(createBadge({ label, type: t, rounded: false, iconOnly: false }));
       roundedBadges.push(createBadge({ label, type: t, rounded: true, iconOnly: false }));
       iconOnlyBadges.push(createBadge({ type: t, rounded: false, iconOnly: true }));
       roundedIconOnlyBadges.push(createBadge({ type: t, rounded: true, iconOnly: true }));
+      borderBadges.push(createBadge({ label, type: t, rounded: false, iconOnly: false, border: true }));
     }
     return `
       <div style="display: flex; flex-direction: column; gap: 16px;">
+        <strong>Default</strong>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            ${badges.join('')}
+          </div>
+        <strong>Rounded</strong>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <strong>Default</strong>
-          ${badges.join('')}
-        </div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <strong>Rounded</strong>
           ${roundedBadges.join('')}
         </div>
+        <strong>Icon Only</strong>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <strong>Icon Only</strong>
           ${iconOnlyBadges.join('')}
         </div>
+        <strong>Rounded + Icon Only</strong>
         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <strong>Rounded + Icon Only</strong>
           ${roundedIconOnlyBadges.join('')}
+        </div>
+        <strong>With Border</strong>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          ${borderBadges.join('')}
         </div>
       </div>
     `;
@@ -239,7 +281,7 @@ export const AllVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Overview of all badge types in default, rounded, icon-only, and rounded icon-only states.',
+        story: 'Overview of all badge types in default, rounded, icon-only, rounded icon-only, and with border states.',
       },
     },
   },

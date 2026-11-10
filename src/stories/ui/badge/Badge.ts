@@ -8,6 +8,7 @@ export interface BadgeProps {
   type?: BaseColorVariant;
   rounded?: boolean;
   iconOnly?: boolean;
+  border?: boolean;
 }
 
 const badgeClassNames = tv({
@@ -16,23 +17,37 @@ const badgeClassNames = tv({
     type: {
       primary: 'bg-primary-background text-primary-foreground',
       secondary: 'bg-secondary-background text-secondary-foreground',
-      tertiary: 'bg-tertiary-100 text-tertiary-800',
-      danger: 'bg-danger-50 text-danger-800',
-      success: 'bg-success-50 text-success-800',
-      info: 'bg-info-50 text-info-800',
-      warning: 'bg-warning-50 text-warning-800',
-      light: 'bg-gray-100 text-gray-800',
-      dark: 'bg-gray-800 text-white',
+      tertiary: 'bg-tertiary-background text-tertiary-foreground',
+      danger: 'bg-danger-background text-danger-foreground',
+      success: 'bg-success-background text-success-foreground',
+      info: 'bg-info-background text-info-foreground',
+      warning: 'bg-warning-background text-warning-foreground',
+      light: 'bg-natural-background text-natural-foreground',
+      dark: 'bg-natural-foreground text-white',
     },
     rounded: {
       true: 'rounded-full',
       false: 'rounded',
     },
     iconOnly: {
-      true: 'p-0 w-10 h-10',
+      true: 'p-0 w-10 h-10 text-xl',
       false: 'px-4 py-2',
     },
+    border: {
+      true: 'border',
+    },
   },
+  compoundVariants: [
+    { type: 'primary', border: true, class: 'border-primary-border' },
+    { type: 'secondary', border: true, class: 'border-secondary-border' },
+    { type: 'tertiary', border: true, class: 'border-tertiary-border' },
+    { type: 'danger', border: true, class: 'border-danger-border' },
+    { type: 'success', border: true, class: 'border-success-border' },
+    { type: 'info', border: true, class: 'border-info-border' },
+    { type: 'warning', border: true, class: 'border-warning-border' },
+    { type: 'light', border: true, class: 'border-natural-border' },
+    { type: 'dark', border: true, class: 'border-dark-border' },
+  ],
 });
 
 function escapeHtml(text: string): string {
@@ -41,8 +56,8 @@ function escapeHtml(text: string): string {
   return div.innerHTML;
 }
 
-export const createBadge = ({ label = 'badge', type = 'primary', rounded = false, iconOnly = false }: BadgeProps): string => {
-  const badgeClass = badgeClassNames({ type, rounded, iconOnly });
+export const createBadge = ({ label = 'badge', type = 'primary', rounded = false, iconOnly = false, border = false }: BadgeProps): string => {
+  const badgeClass = badgeClassNames({ type, rounded, iconOnly, border });
   const escapedLabel = escapeHtml(label);
   const content = iconOnly ? '<i class="ri-star-line"></i>' : escapedLabel;
 

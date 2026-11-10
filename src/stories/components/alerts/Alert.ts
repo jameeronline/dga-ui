@@ -6,6 +6,7 @@ import { formatHtml } from '@/utils/code-format';
 export interface AlertProps {
   type?: BaseAlertVariant;
   title?: string;
+  filled?: boolean;
   message?: string;
   leadingIcon?: boolean;
   dismissIcon?: boolean;
@@ -15,6 +16,7 @@ export interface AlertProps {
 }
 
 const alertIcons: Record<string, string> = {
+  neutral: 'ri-question-line',
   success: 'ri-checkbox-circle-line',
   danger: 'ri-question-line',
   info: 'ri-information-2-line',
@@ -24,7 +26,7 @@ const alertIcons: Record<string, string> = {
 const alertClassNames = tv({
   slots: {
     base: 'relative flex items-center gap-4 rounded-lg p-4 border border-l-8',
-    icon: 'text-2xl shrink-0',
+    icon: 'text-2xl shrink-0 w-10 h-10 flex items-center justify-center rounded-full',
     content: 'flex-1',
     title: 'font-semibold mb-1',
     message: 'flex',
@@ -33,17 +35,26 @@ const alertClassNames = tv({
   },
   variants: {
     type: {
+      neutral: {
+        base: 'border-gray-200 text-gray-600 border-l-gray-200',
+        title: 'text-gray-800',
+        icon: 'bg-gray-100 text-gray-800',
+      },
       success: {
-        base: 'bg-success-50/60 border-success-200 text-success-600',
+        base: 'border-success-200 text-success-600 border-l-success-600',
+        icon: 'bg-success-50 text-success-600',
       },
       danger: {
-        base: 'bg-danger-50/60 border-danger-200 text-danger-600',
+        base: 'border-danger-200 text-danger-600 border-l-danger-600',
+        icon: 'bg-danger-50 text-danger-600',
       },
       info: {
-        base: 'bg-info-50/60 border-info-200 text-info-600',
+        base: 'border-info-200 text-info-600 border-l-info-600',
+        icon: 'bg-info-50 text-info-600',
       },
       warning: {
-        base: 'bg-warning-50/60 border-warning-200 text-warning-600',
+        base: 'border-warning-200 text-warning-600 border-l-warning-600',
+        icon: 'bg-warning-50 text-warning-600',
       },
     },
     leadingIcon: {
@@ -52,6 +63,19 @@ const alertClassNames = tv({
       },
     },
   },
+  compoundVariants: [
+    {
+      type: 'neutral',
+      filled: true,
+      class: {
+        base: 'bg-gray-50/40',
+      },
+    },
+    { type: 'success', filled: true, class: { base: 'bg-success-50/40' } },
+    { type: 'danger', filled: true, class: { base: 'bg-danger-50/30' } },
+    { type: 'info', filled: true, class: { base: 'bg-info-50/40' } },
+    { type: 'warning', filled: true, class: { base: 'bg-warning-50/40' } },
+  ],
 });
 
 function escapeHtml(text: string): string {
@@ -62,6 +86,7 @@ function escapeHtml(text: string): string {
 
 export const createAlert = ({
   type = 'success',
+  filled = false,
   title = '',
   message = '',
   leadingIcon = false,
@@ -70,7 +95,7 @@ export const createAlert = ({
   primaryButtonLabel = 'Proceed',
   linkButtonLabel = 'Cancel',
 }: AlertProps): string => {
-  const { base, icon, content, title: titleClass, message: messageClass, actions, dismiss } = alertClassNames({ type, leadingIcon });
+  const { base, icon, content, title: titleClass, message: messageClass, actions, dismiss } = alertClassNames({ type, leadingIcon, filled });
 
   const escapedTitle = escapeHtml(title);
   const escapedMessage = escapeHtml(message);

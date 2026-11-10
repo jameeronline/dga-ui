@@ -16,7 +16,7 @@ const meta: Meta<RadioProps> = {
   argTypes: {
     radios: {
       name: 'Radio Options',
-      control: { type: 'array' },
+      control: { type: 'object' },
       table: {
         category: 'Content',
         type: { summary: 'string[]' },

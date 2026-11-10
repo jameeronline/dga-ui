@@ -1,4 +1,9 @@
+<!-- Analytics -->
 <!-- <script src="https://use.typekit.net/xxxyyy.js"></script> -->
+
+<!-- Vendor Imports -->
+<link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" />
+
 <!-- .storybook/preview-head.html -->
 <style>
   /* Example: Customizing the syntax highlighting colors */
@@ -6,20 +11,24 @@
   .sbdocs .prismjs .token.prolog,
   .sbdocs .prismjs .token.doctype,
   .sbdocs .prismjs .token.cdata {
-    color: #6a737d; /* A softer gray for comments */
+    color: #6a737d;
+    /* A softer gray for comments */
     font-style: italic;
   }
 
   .sbdocs .prismjs .token.function {
-    color: #6f42c1; /* Purple for functions */
+    color: #6f42c1;
+    /* Purple for functions */
   }
 
   .sbdocs .prismjs .token.keyword {
-    color: #d73a49; /* Red for keywords */
+    color: #d73a49;
+    /* Red for keywords */
   }
 
   .sbdocs .prismjs .token.string {
-    color: #032f62; /* Dark blue for strings */
+    color: #032f62;
+    /* Dark blue for strings */
   }
 
   /* Example: Changing the background and border of the code block */
@@ -32,11 +41,11 @@
 </style>
 
 <style>
-  .sbdocs-wrapper{
+  .sbdocs-wrapper {
     padding: 2rem 4rem !important;
   }
 
-  .sbdocs-content{
+  .sbdocs-content {
     width: 100% !important;
     max-width: none !important;
   }
@@ -53,15 +62,15 @@
     margin-top: 0px !important;
   }
 
-  .my-custom-canvas [role=toolbar]{
+  .my-custom-canvas [role=toolbar] {
     background-color: var(--color-slate-100, #fafafa) !important;
   }
-  
+
   /* Style the preview container */
   /* .my-custom-canvas .docs-story {
     padding: 20px;
   } */
-  
+
   /* Style the source code button */
   /* .my-custom-canvas .docblock-code-toggle {
     background-color: #6f42c1;
@@ -79,13 +88,13 @@
 
 <style>
   /* Preview Iframe Styling - Uses Design System CSS Variables from output.css */
-  
+
   /* Test: Change preview background to verify styles are working */
   .sb-show-main {
     background-color: var(--color-gray-50, #f8f9fa) !important;
   }
 
-  .sbdocs-preview{
+  .sbdocs-preview {
     box-shadow: none !important;
   }
 
@@ -104,7 +113,7 @@
     border: 1px solid var(--color-slate-200, #e2e8f0) !important;
   }
 
-  .docblock-argstable-body{
+  .docblock-argstable-body {
     box-shadow: none !important;
     filter: none !important;
     font-family: monospace !important;
@@ -123,7 +132,7 @@
     background-color: var(--color-white, #ffffff) !important;
   }
 
-  .docblock-argstable-body [title$="items"] td{
+  .docblock-argstable-body [title$="items"] td {
     background-color: var(--color-white, #ffffff) !important;
   }
 
@@ -189,4 +198,20 @@
     font-size: 0.75rem !important;
     color: var(--color-slate-700, #334155) !important;
   } */
+</style>
+
+<style>
+  #component-variants>h2:not(#component-variants) {
+    display: none !important;
+  }
+
+  #component-variants .sb-anchor h3 {
+    font-size: 1.125rem !important;
+    font-weight: 700 !important;
+  }
+
+  #component-variants .sb-anchor h3+p {
+    font-size: 1rem !important;
+    color: var(--color-gray-500, #4b5563) !important;
+  }
 </style>

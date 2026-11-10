@@ -1,0 +1,78 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { createIcon } from './Icon';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} title="Example/Usage" />
+
+# Icon Usage
+
+## Installation
+
+Icons are built into the design system. No additional installation required.
+
+```js
+import { createIcon } from '@dga-ui/components';
+```
+
+## Basic Usage
+
+<Canvas>
+  <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'check-line', size: 24 }) }} />
+  <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'add-line', size: 24 }) }} />
+  <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'settings-4-line', size: 24 }) }} />
+</Canvas>
+
+## API
+
+| Prop        | Type               | Default        | Description                         |
+| ----------- | ------------------ | -------------- | ----------------------------------- |
+| `name`      | `string`           | Required       | Icon name from the available icons  |
+| `size`      | `number \| string` | `16`           | Size in pixels or CSS units         |
+| `color`     | `string`           | `currentColor` | Icon color (hex, rgb, etc.)         |
+| `title`     | `string`           | -              | Accessible title for screen readers |
+| `className` | `string`           | `''`           | Additional CSS classes              |
+
+## Size Variants
+
+<Canvas>
+  <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'star-line', size: 12 }) }} />
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'star-line', size: 16 }) }} />
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'star-line', size: 20 }) }} />
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'star-line', size: 24 }) }} />
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'star-line', size: 32 }) }} />
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'star-line', size: 48 }) }} />
+  </div>
+</Canvas>
+
+## Color
+
+<Canvas>
+  <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'heart-fill', size: 24, color: '#ef4444' }) }} />
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'heart-fill', size: 24, color: '#22c55e' }) }} />
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'heart-fill', size: 24, color: '#3b82f6' }) }} />
+    <div dangerouslySetInnerHTML={{ __html: createIcon({ name: 'heart-fill', size: 24, color: '#a855f7' }) }} />
+  </div>
+</Canvas>
+
+## Accessibility
+
+For meaningful icons (not decorative), provide a title:
+
+```js
+// Decorative icon (default)
+createIcon({ name: 'search-line' });
+
+// Meaningful icon with accessibility
+createIcon({ name: 'user-line', title: 'User Profile' });
+```
+
+## Finding Icons
+
+Browse all available icons in the [Icons Listing](/story/components-icon-icons-listing--default) page. You can:
+
+- Search by name
+- Copy icon name
+- Copy SVG code
+- Download SVG file

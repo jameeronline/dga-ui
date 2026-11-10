@@ -1,6 +1,7 @@
 import { tv } from 'tailwind-variants';
 
 import type { TooltipPosition, TooltipVariant, TooltipSizeVariant } from '@/types/index';
+import { createButton } from '@/stories/components/button/Button';
 import { formatHtml } from '@/utils/code-format';
 
 export interface TooltipProps {
@@ -10,61 +11,55 @@ export interface TooltipProps {
   size?: TooltipSizeVariant;
   label?: string;
   tooltipText?: string;
+  tooltipDescription?: string;
 }
 
 const tooltipClassNames = tv({
   slots: {
-    base: 'relative overflow-hidden cursor-pointer group hover:overflow-visible focus-visible:outline-none',
-    message:
-      "invisible absolute z-10 rounded opacity-0 transition-all before:invisible before:absolute before:z-10 ${arrowPositionStyles[position]} before:transition-all before:content-[''] group-hover:visible group-hover:block group-hover:opacity-100 group-hover:before:visible group-hover:before:opacity-100",
+    trigger: 'relative inline-flex items-center justify-center cursor-pointer peer overflow-visible',
+    item: 'text-sm p-4 absolute z-10 rounded opacity-0 transition-opacity duration-200 pointer-events-none peer-hover:opacity-100 peer-focus-within:opacity-100 [position-anchor:auto] [position-try-options:flip-block flip-inline]',
+    arrow: 'absolute w-2 h-2 bg-inherit rotate-45',
   },
   variants: {
     variant: {
-      primary: { message: 'bg-primary-700 text-white' },
-      secondary: { message: 'bg-secondary-600 text-white' },
-      tertiary: { message: 'bg-tertiary-600 text-white' },
-      danger: { message: 'bg-danger-500 text-white' },
-      info: { message: 'bg-info-500 text-white' },
-      warning: { message: 'bg-warning-500 text-white' },
-      success: { message: 'bg-success-500 text-white' },
-      light: { message: 'bg-gray-200 text-gray-800' },
-      dark: { message: 'bg-gray-600 text-white' },
-    },
-    size: {
-      small: { message: 'w-32 p-2 text-xs' },
-      default: { message: 'w-48 p-4 text-sm' },
-      large: { message: 'w-64 p-6 text-md' },
+      light: { item: 'bg-gray-200 text-gray-800' },
+      dark: { item: 'bg-gray-600 text-white' },
     },
     position: {
-      top: {
-        message:
-          'bottom-full left-1/2 -translate-x-1/2 mb-2 before:left-1/2 before:top-full before:z-10 before:mb-2 before:-ml-2 before:border-x-8 before:border-t-8 before:border-x-transparent',
-      },
-      right: {
-        message:
-          'left-full top-1/2 -translate-y-1/2 ml-2 before:top-1/2 before:right-full before:z-10 before:ml-2 before:-mt-2 before:border-y-8 before:border-r-8 before:border-y-transparent',
-      },
-      bottom: {
-        message:
-          'top-full left-1/2 -translate-x-1/2 mt-2 before:left-1/2 before:bottom-full before:z-10 before:mt-2 before:-ml-2 before:border-x-8 before:border-b-8 before:border-x-transparent',
-      },
-      left: {
-        message:
-          'right-full top-1/2 -translate-y-1/2 mr-2 before:top-1/2 before:left-full before:z-10 before:mr-2 before:-mt-2 before:border-y-8 before:border-l-8 before:border-y-transparent',
-      },
+      top: { item: '[bottom:anchor(top)] [left:anchor(50%)] -translate-x-1/2' },
+      bottom: { item: '[top:anchor(bottom)] [left:anchor(50%)] -translate-x-1/2' },
+      left: { item: '[right:anchor(left)] [top:anchor(50%)] -translate-y-1/2' },
+      right: { item: '[left:anchor(right)] [top:anchor(50%)] -translate-y-1/2' },
     },
   },
-  compoundVariants: [
-    { variant: 'primary', position: 'top', class: { message: 'before:border-t-primary-700' } },
-    { variant: 'primary', position: 'right', class: { message: 'before:border-r-primary-700' } },
-    { variant: 'primary', position: 'bottom', class: { message: 'before:border-b-primary-700' } },
-    { variant: 'primary', position: 'left', class: { message: 'before:border-l-primary-700' } },
-    { variant: 'secondary', position: 'top', class: { message: 'before:border-t-secondary-500' } },
-    { variant: 'secondary', position: 'right', class: { message: 'before:border-r-secondary-500' } },
-    { variant: 'secondary', position: 'bottom', class: { message: 'before:border-b-secondary-500' } },
-    { variant: 'secondary', position: 'left', class: { message: 'before:border-l-secondary-500' } },
-  ],
+  defaultVariants: {
+    variant: 'light',
+    position: 'top',
+  },
 });
+
+// const sizeMap: Record<TooltipSizeVariant, 'small' | 'medium' | 'large'> = {
+//   small: 'small',
+//   default: 'medium',
+//   large: 'large',
+// };
+
+const arrowPlacement: Record<TooltipPosition, string> = {
+  top: 'bottom: -4px; left: 50%; transform: translateX(-50%);',
+  bottom: 'top: -4px; left: 50%; transform: translateX(-50%);',
+  left: 'right: -4px; top: 50%; transform: translateY(-50%);',
+  right: 'left: -4px; top: 50%; transform: translateY(-50%);',
+};
+
+let tooltipInstanceId = 0;
+
+function generateIds(): { anchorName: string; tooltipId: string } {
+  tooltipInstanceId += 1;
+  return {
+    anchorName: `--tooltip-trigger-${tooltipInstanceId}`,
+    tooltipId: `tooltip-${tooltipInstanceId}`,
+  };
+}
 
 function escapeHtml(text: string): string {
   const div = document.createElement('div');
@@ -73,28 +68,62 @@ function escapeHtml(text: string): string {
 }
 
 export const createTooltip = ({
-  variant = 'primary',
+  variant = 'light',
   onlyIcon = false,
   position = 'top',
-  size = 'default',
   label = 'Hover me',
   tooltipText = "I'm a tooltip",
+  tooltipDescription = 'Max width of tooltips is 240px - text will wrap automatically',
 }: TooltipProps): string => {
-  const { base, message } = tooltipClassNames({
-    variant: variant,
-    size: size,
-    position: position,
+  const { anchorName, tooltipId } = generateIds();
+  const { trigger, item, arrow } = tooltipClassNames({ variant, position });
+
+  const escapedTooltipText = escapeHtml(tooltipText);
+  const escapedLabel = escapeHtml(label);
+  const escapedTooltipDescription = escapeHtml(tooltipDescription);
+
+  // Render the trigger using the Button component so it is a native,
+  // keyboard-focusable <button> with consistent button styling.
+  let triggerHtml = createButton({
+    label,
+    type: 'dark',
+    size: 'medium',
+    icon: onlyIcon,
+    iconOnly: onlyIcon,
+    iconName: 'ri-information-line',
   });
 
-  const escapedLabel = escapeHtml(label);
-  const escapedTooltipText = escapeHtml(tooltipText);
+  // Add the tooltip's base classes (relative, group, cursor-pointer) to the button.
+  triggerHtml = triggerHtml.replace('class="', `class="${trigger()} `);
 
+  // Assign anchor-name and aria attributes to the button.
+  const buttonAria = onlyIcon ? `aria-label="${escapedLabel}" aria-describedby="${tooltipId}" ` : `aria-describedby="${tooltipId}" `;
+  triggerHtml = triggerHtml.replace('<button ', `<button style="anchor-name: ${anchorName}" ${buttonAria}`);
+
+  // Hide the icon-only icon from assistive technology.
+  if (onlyIcon) {
+    triggerHtml = triggerHtml.replace('<i class="', '<i aria-hidden="true" class="');
+  }
+
+  // Arrow: a rotated square that inherits the tooltip's background color,
+  // placed at the outer edge of the tooltip facing the anchor (trigger).
+  const arrowHtml = `<span class="${arrow()}" style="${arrowPlacement[position]}"></span>`;
+
+  const tooltipHtml = `<div
+    role="tooltip"
+    id="${tooltipId}"
+    class="${item()}"
+    style="position-anchor: ${anchorName}"
+  >
+    ${arrowHtml}
+    ${escapedTooltipText}
+    <p class="text-sm text-muted">${escapedTooltipDescription}</p>
+  </div>`;
+
+  // Return the trigger and tooltip item as separate sibling elements.
   return formatHtml(`
-      <span class="${base()}" aria-describedby="tooltip-01">
-          ${onlyIcon ? '<i class="ri-information-line"></i>' : escapedLabel}
-          <span role="tooltip" id="tooltip-01" class="${message()}">
-              ${escapedTooltipText}
-          </span>
-      </span>
-  `);
+    <!-- Tooltip Trigger Button -->
+    ${triggerHtml}
+    <!-- Tooltip Item -->
+    ${tooltipHtml}`);
 };

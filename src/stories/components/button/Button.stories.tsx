@@ -13,62 +13,36 @@ const meta: Meta<ButtonProps> = {
   title: 'Components/Button',
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     docs: {
       description: {
         component:
-          'The button component is a versatile UI element that supports multiple types, sizes, and configurations. It can be rendered as a button, link, or input and allows for customization with icons, labels, full-width styles, and more.',
+          'The button <a href="https://google.com" target="_blank" rel="noopener noreferrer">google.com</a> component is a versatile UI element that supports multiple types, sizes, and configurations. It can be rendered as a button, link, or input and allows for customization with icons, labels, full-width styles, and more.',
       },
       guidelines: (
-        <div>
-          <h3>When to Use</h3>
+        <>
+          <p>Choose a button style based on the importance of the action.</p>
+
+          <h3>Do</h3>
           <ul>
-            <li>Use buttons to trigger actions, submit forms, or navigate within the application</li>
-            <li>Primary buttons for main actions (Save, Submit, Continue)</li>
-            <li>Secondary buttons for alternative actions (Cancel, Back)</li>
-            <li>Tertiary buttons for less prominent actions</li>
+            <li>Use clear, action-oriented labels.</li>
+            <li>Reserve the primary style for the main action.</li>
           </ul>
-          
-          <h3>Dos</h3>
+
+          <h3>Don't</h3>
           <ul>
-            <li>Use clear, action-oriented labels (e.g., "Save", "Delete", "Submit")</li>
-            <li>Maintain consistent button placement across similar contexts</li>
-            <li>Use icon-only buttons only when the icon meaning is universally understood</li>
-            <li>Ensure sufficient color contrast for accessibility</li>
+            <li>Use buttons for navigation; use a link instead.</li>
           </ul>
-          
-          <h3>Don'ts</h3>
-          <ul>
-            <li>Don't use multiple primary buttons in the same view</li>
-            <li>Don't use buttons for navigation - use links instead (or set as="a")</li>
-            <li>Don't disable buttons without providing feedback on why they're disabled</li>
-            <li>Don't use vague labels like "Click here" or "OK"</li>
-          </ul>
-        </div>
+        </>
       ),
       accessibility: (
-        <div>
-          <h3>Accessibility Requirements</h3>
+        <>
+          <p>Make sure the button has an accessible name that describes its action.</p>
           <ul>
-            <li>Buttons must have accessible names - either through text content or aria-label</li>
-            <li>Maintain minimum touch target size of 44x44 pixels</li>
-            <li>Ensure color contrast ratio of at least 4.5:1 for normal text</li>
-            <li>Use semantic &lt;button&gt; element by default, or &lt;a&gt; for links</li>
+            <li>Ensure it can be operated with a keyboard.</li>
+            <li>Keep the keyboard focus indicator visible.</li>
           </ul>
-          
-          <h3>Keyboard Navigation</h3>
-          <ul>
-            <li>Buttons are focusable and can be activated with Enter or Space key</li>
-            <li>Tab order should follow logical reading order</li>
-            <li>Disabled buttons should remain focusable but not interactive</li>
-          </ul>
-          
-          <h3>ARIA Considerations</h3>
-          <ul>
-            <li>Use aria-disabled="true" instead of the disabled attribute if you need to maintain focus</li>
-            <li>Add aria-describedby if additional context is needed</li>
-            <li>For icon-only buttons, always provide aria-label with descriptive text</li>
-          </ul>
-        </div>
+        </>
       ),
     },
     backgrounds: {
@@ -135,9 +109,9 @@ const meta: Meta<ButtonProps> = {
       table: {
         category: 'Appearance',
         type: { summary: 'string' },
-        defaultValue: { summary: 'medium' },
+        defaultValue: { summary: 'large' },
       },
-      defaultValue: 'medium',
+      defaultValue: 'large',
       description: 'The size of the button (affects height, padding, and font).',
     },
     link: {
@@ -201,24 +175,25 @@ const meta: Meta<ButtonProps> = {
       name: 'Icon Name',
       control: { type: 'select' },
       options: [
-        'ri-alarm-line',
-        'ri-shopping-bag-line',
-        'ri-notification-line',
-        'ri-book-open-line',
-        'ri-camera-line',
-        'ri-cloud-line',
-        'ri-settings-4-line',
-        'ri-heart-line',
-        'ri-home-line',
-        'ri-star-line',
+        'hgi hgi-stroke hgi-rounded hgi-home-07',
+        'hgi hgi-stroke hgi-rounded hgi-check',
+        'hgi hgi-stroke hgi-rounded hgi-trash',
+        'hgi hgi-stroke hgi-rounded hgi-notification-01',
+        'hgi hgi-stroke hgi-rounded hgi-arrow-down-01',
+        'hgi hgi-stroke hgi-rounded hgi-camera-01',
+        'hgi hgi-stroke hgi-rounded hgi-cloud',
+        'hgi hgi-stroke hgi-rounded hgi-setting-07',
+        'hgi hgi-stroke hgi-rounded hgi-heart',
+        'hgi hgi-stroke hgi-rounded hgi-home-07',
+        'hgi hgi-stroke hgi-rounded hgi-star',
       ],
       table: {
         category: 'Icon',
         type: { summary: 'string' },
-        defaultValue: { summary: 'ri-star-line' },
+        defaultValue: { summary: 'hgi hgi-stroke hgi-rounded hgi-arrow-down-01' },
       },
-      defaultValue: 'ri-star-line',
-      description: 'The name of the Remix icon class to be displayed inside the button.',
+      defaultValue: 'hgi hgi-stroke hgi-rounded hgi-arrow-down-01',
+      description: 'The name of the Huge icon class to be displayed inside the button.',
       if: { arg: 'icon', truthy: true },
     },
     iconPosition: {
@@ -260,17 +235,17 @@ const meta: Meta<ButtonProps> = {
   },
   args: {
     type: 'primary',
-    size: 'medium',
+    size: 'large',
+    label: 'Button',
     outline: false,
     rounded: false,
     disabled: false,
     link: false,
     icon: false,
-    iconName: 'ri-star-line',
+    iconName: 'ri-check-fill',
     iconPosition: 'left',
     iconOnly: false,
     full: false,
-    label: 'Button',
     as: 'button',
     href: '#',
   },
@@ -285,7 +260,7 @@ type Story = StoryObj<typeof createButton>;
 export const Default: Story = {
   args: {
     type: 'primary',
-    size: 'medium',
+    size: 'large',
   },
   parameters: {
     docs: {

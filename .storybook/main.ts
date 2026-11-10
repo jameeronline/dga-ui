@@ -11,6 +11,7 @@ const config: StorybookConfig = {
    addons: [
      '@storybook/addon-docs',
      '@whitespace/storybook-addon-html',
+     '@storybook/addon-a11y',
    ],
   framework: '@storybook/html-vite',
   viteFinal: async (config) => {

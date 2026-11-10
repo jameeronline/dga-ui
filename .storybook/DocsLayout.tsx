@@ -24,7 +24,7 @@ const slugify = (text: string) =>
 
 export const DocsLayout = (props: DocsLayoutProps) => {
   const meta = useOf('meta');
-  const docsParams = meta?.parameters?.docs || {};
+  const docsParams = meta?.preparedMeta?.parameters?.docs || {};
 
   const guidelines = props.guidelines || docsParams.guidelines;
   const accessibility = props.accessibility || docsParams.accessibility;
@@ -184,7 +184,7 @@ export const DocsLayout = (props: DocsLayoutProps) => {
             <li key={node.id} className={baseIndent}>
               <a
                 href={`#${node.id}`}
-                className={`block text-sm leading-tight py-1 px-2 rounded ${isActive ? 'bg-blue-50 text-primary font-medium' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50'}`}
+                className={`block text-sm leading-tight py-1 px-2 rounded ${isActive ? 'bg-primary-50 text-primary font-medium' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50'}`}
                 aria-current={isActive ? 'true' : undefined}
                 onClick={(e) => {
                   e.preventDefault();
@@ -230,11 +230,7 @@ export const DocsLayout = (props: DocsLayoutProps) => {
         <header className="prose prose-slate prose-h1:font-bold prose-h1:text-4xl prose-p:text-lg max-w-none mb-10">
           <div className="not-prose">
             <Title />
-          </div>
-          <div className="not-prose">
             <Subtitle />
-          </div>
-          <div className="not-prose">
             <Description />
           </div>
         </header>
@@ -250,8 +246,17 @@ export const DocsLayout = (props: DocsLayoutProps) => {
 
           {/* Props and Controls */}
           <section id="props-controls">
-            <h2 id="props-controls" className="text-2xl font-bold mb-2">Props & Controls</h2>
-            <Controls className="rounded-lg" />
+            <h2 id="props-controls" className="text-2xl font-bold mb-2">Properties</h2>
+            <Controls />
+          </section>
+
+          <hr className="my-0 border-slate-200" />
+
+          {/* Alternative Variants */}
+          <section id="component-variants">
+            <h2 id="component-variants" className="text-2xl font-bold mb-2">Variants</h2>
+            <p className="text-slate-600 mb-10">Explore alternative states and configurations for this component.</p>
+            <Stories includePrimary={false} />
           </section>
 
           {/* Usage Guidelines */}
@@ -273,13 +278,6 @@ export const DocsLayout = (props: DocsLayoutProps) => {
               </div>
             </section>
           )}
-
-          {/* Alternative Variants */}
-          <section id="component-variants">
-            <h2 id="component-variants" className="text-2xl font-bold mb-2">Variants</h2>
-            <p className="text-slate-600 mb-6">Explore alternative states and configurations for this component.</p>
-            <Stories title={null} includePrimary={false} />
-          </section>
         </main>
       </div>
     </div>

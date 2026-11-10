@@ -18,19 +18,19 @@ export interface AccordionProps {
 }
 
 const toggleIcons: Record<string, string> = {
-  'chevron-down': 'ri-arrow-down-line',
-  'arrow-down': 'ri-arrow-down-s-line',
-  'arrow-down-circle': 'ri-arrow-down-circle-line',
+  'chevron-down': 'hgi hgi-stroke hgi-rounded hgi-arrow-down-01',
+  'arrow-down': 'hgi hgi-stroke hgi-rounded hgi-arrow-down-02',
+  'arrow-down-circle': 'hgi hgi-stroke hgi-rounded hgi-circle-arrow-down-02',
 };
 
 const accordionClassNames = tv({
   slots: {
-    base: 'w-full divide-y rounded divide-slate-200 text-slate-700 group-hover:text-slate-900',
-    itemBase: 'p-4 group',
-    head: '[&::-webkit-details-marker]:hidden relative pr-8 font-medium list-none cursor-pointer focus-visible:outline-none transition-colors duration-300',
-    body: 'mt-4 text-slate-500 transition duration-300',
-    leadIcon: 'text-2xl text-primary-800',
-    trailIcon: 'absolute right-0 text-xl transition duration-300 top-1 shrink-0 group-open:rotate-180',
+    base: 'w-full divide-y rounded divide-gray-300 bg-white',
+    itemBase: 'group',
+    head: '[&::-webkit-details-marker]:hidden flex justify-between items-center gap-4 relative h-15 px-4 text-text-default font-medium list-none cursor-pointer hover:bg-gray-100 focus-ring-outline transition-colors duration-300',
+    body: 'p-4 text-slate-500 transition duration-300',
+    leadIcon: 'text-2xl text-icon-brand',
+    trailIcon: 'relative right-0 text-xl transition duration-300 top-1 shrink-0 group-open:rotate-180',
   },
   variants: {
     icon: {
@@ -38,16 +38,16 @@ const accordionClassNames = tv({
         head: 'flex items-center gap-3',
       },
     },
-    outline: {
-      true: {
-        base: 'border border-slate-200',
-      },
-    },
-    elevated: {
-      true: {
-        base: 'shadow-lg',
-      },
-    },
+    // outline: {
+    //   true: {
+    //     base: 'border border-slate-200',
+    //   },
+    // },
+    // elevated: {
+    //   true: {
+    //     base: 'shadow-lg',
+    //   },
+    // },
   },
 });
 
@@ -73,12 +73,17 @@ export const createAccordion = ({ withIcon = false, outline = false, elevated = 
       const trailIconClass = toggleIcons[toggleIcon] || toggleIcons['arrow-down'];
 
       return `
+      <!-- Accordion item -->
 <details class="${itemBase()}" ${isOpen}>
+<!-- Accordion Header -->
   <summary class="${head()}">
-    ${iconHtml}
-    ${escapedTitle}
+    <span class="flex items-center gap-3">
+      ${iconHtml}
+      ${escapedTitle}
+    </span>
     <i class="${trailIconClass} ${trailIcon()}"></i>
   </summary>
+  <!-- Accordion Body -->
   <div class="${body()}">
     <p>${escapedDesc}</p>
   </div>
@@ -87,6 +92,7 @@ export const createAccordion = ({ withIcon = false, outline = false, elevated = 
     .join('');
 
   return formatHtml(`
+    <!-- Accordion Group -->
 <section class="${base()}">
   ${items}
 </section>

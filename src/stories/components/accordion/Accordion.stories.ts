@@ -11,7 +11,9 @@ const meta: Meta<AccordionProps> = {
   title: 'Components/Accordion',
   tags: ['autodocs'],
   parameters: {
+    layout: 'centered',
     docs: {
+      source: { excludeDecorators: true },
       description: {
         component: 'A simple accordion component that can be used to trigger actions or navigate users.',
       },
@@ -21,6 +23,7 @@ const meta: Meta<AccordionProps> = {
         'Ensure that the accordion is keyboard navigable, with clear focus states and appropriate ARIA attributes (e.g., aria-expanded, aria-controls) to indicate the state of each section. Use semantic HTML elements like <details> and <summary> for better accessibility.',
     },
   },
+  decorators: [(Story) => `<div style="width: 400px;">${Story()}</div>`],
   render: createAccordion,
   argTypes: {
     withIcon: {
@@ -34,28 +37,28 @@ const meta: Meta<AccordionProps> = {
       defaultValue: false,
       description: 'Shows an icon beside the accordion title',
     },
-    outline: {
-      name: 'Outline',
-      control: { type: 'boolean' },
-      table: {
-        category: 'Appearance',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-      defaultValue: false,
-      description: 'Adds an outline around the accordion',
-    },
-    elevated: {
-      name: 'Elevated',
-      control: { type: 'boolean' },
-      table: {
-        category: 'Appearance',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-      defaultValue: false,
-      description: 'Adds a shadow effect for elevation',
-    },
+    // outline: {
+    //   name: 'Outline',
+    //   control: { type: 'boolean' },
+    //   table: {
+    //     category: 'Appearance',
+    //     type: { summary: 'boolean' },
+    //     defaultValue: { summary: 'false' },
+    //   },
+    //   defaultValue: false,
+    //   description: 'Adds an outline around the accordion',
+    // },
+    // elevated: {
+    //   name: 'Elevated',
+    //   control: { type: 'boolean' },
+    //   table: {
+    //     category: 'Appearance',
+    //     type: { summary: 'boolean' },
+    //     defaultValue: { summary: 'false' },
+    //   },
+    //   defaultValue: false,
+    //   description: 'Adds a shadow effect for elevation',
+    // },
     toggleIcon: {
       name: 'Toggle Icon',
       control: { type: 'select' },
@@ -95,36 +98,35 @@ const meta: Meta<AccordionProps> = {
   },
   args: {
     withIcon: false,
-    outline: false,
-    elevated: false,
-    toggleIcon: 'arrow-down',
+    // outline: false,
+    toggleIcon: 'chevron-down',
     content: [
       {
-        icon: 'ri-building-4-line',
+        icon: 'hgi hgi-stroke hgi-building-04',
         title: 'What is a Design System?',
         description:
           'A design system is a collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications.',
       },
       {
-        icon: 'ri-mail-line',
+        icon: 'hgi hgi-stroke hgi-mail-01',
         title: 'Why Use a Design System?',
         description:
           'Design systems ensure consistency across multiple projects, improve efficiency in development, and provide a shared language between designers and developers.',
       },
       {
-        icon: 'ri-phone-line',
+        icon: 'hgi hgi-stroke hgi-call',
         title: 'Core Components of a Design System',
         description:
           'A design system consists of UI components, patterns, and guidelines for interaction, design tokens, and documentation that all teams can refer to.',
       },
       {
-        icon: 'ri-article-line',
+        icon: 'hgi hgi-stroke hgi-file-01',
         title: 'How to Implement a Design System',
         description:
           'Implementing a design system requires setting up tools like Storybook for UI documentation, ensuring your components are accessible, and integrating with your development pipeline.',
       },
       {
-        icon: 'ri-id-card-line',
+        icon: 'hgi hgi-stroke hgi-identity-card',
         title: 'Design Tokens Explained',
         description:
           'Design tokens are a system of variables used to store design-related values such as colors, typography, and spacing, allowing for consistency across platforms and products.',
@@ -149,8 +151,7 @@ export const Default: Story = {
   },
   args: {
     withIcon: false,
-    outline: true,
-    elevated: false,
+    // outline: true,
   },
 };
 
@@ -176,7 +177,7 @@ export const Outlined: Story = {
     },
   },
   args: {
-    outline: true,
+    // outline: true,
   },
 };
 
@@ -188,9 +189,7 @@ export const Elevated: Story = {
       },
     },
   },
-  args: {
-    elevated: true,
-  },
+  args: {},
 };
 
 export const WithIconOutlined: Story = {
@@ -203,7 +202,7 @@ export const WithIconOutlined: Story = {
   },
   args: {
     withIcon: true,
-    outline: true,
+    // outline: true,
   },
 };
 
@@ -217,7 +216,6 @@ export const WithIconElevated: Story = {
   },
   args: {
     withIcon: true,
-    elevated: true,
   },
 };
 

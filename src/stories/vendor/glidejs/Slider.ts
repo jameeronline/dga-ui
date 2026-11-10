@@ -43,22 +43,28 @@ export const createSlider = ({
   `;
 
   setTimeout(() => {
-    import('@glidejs/glide').then((Glide) => {
-      const glide = new Glide.default(sliderContainer, {
-        type: type,
-        autoplay: autoplayValue,
-        animationDuration: animationDuration,
-        perView: perView,
-        startAt: startAt,
-        gap: gap,
-        bound: bound,
-        rewind: rewind,
-        keyboard: keyboard,
-        hoverpause: hoverpause,
-      });
+    (async () => {
+      // Load Glide and handle default/es module shapes
+      const mod = await import('@glidejs/glide');
+      const GlideCtor = (mod && (mod.default || mod)) as any;
 
-      glide.mount();
-    });
+      if (typeof GlideCtor === 'function') {
+        const glide = new GlideCtor(sliderContainer, {
+          type: type,
+          autoplay: autoplayValue,
+          animationDuration: animationDuration,
+          perView: perView,
+          startAt: startAt,
+          gap: gap,
+          bound: bound,
+          rewind: rewind,
+          keyboard: keyboard,
+          hoverpause: hoverpause,
+        });
+
+        glide.mount();
+      }
+    })();
   }, 0);
 
   return sliderContainer;

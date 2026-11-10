@@ -49,18 +49,23 @@ export const createEmbla = ({
   const emblaNode = element.querySelector(`#${emblaContainerId}`);
 
   setTimeout(() => {
-    import('embla-carousel').then((EmblaCarousel) => {
-      const embla = EmblaCarousel.default(emblaNode, {
-        loop: loop,
-        speed: speed,
-        slidesPerPage: slidesPerView,
-        dragFree: dragFree,
-        containScroll: containScroll,
-      });
+    (async () => {
+      const mod = await import('embla-carousel');
+      const emblaFactory = (mod && (mod.default || mod)) as any;
 
-      window.emblaInstances = window.emblaInstances || {};
-      window.emblaInstances[emblaContainerId] = embla;
-    });
+      if (typeof emblaFactory === 'function') {
+        const embla = emblaFactory(emblaNode, {
+          loop: loop,
+          speed: speed,
+          slidesPerPage: slidesPerView,
+          dragFree: dragFree,
+          containScroll: containScroll,
+        });
+
+        window.emblaInstances = window.emblaInstances || {};
+        window.emblaInstances[emblaContainerId] = embla;
+      }
+    })();
   }, 0);
 
   return element;

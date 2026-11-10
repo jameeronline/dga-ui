@@ -1,19 +1,14 @@
 import type { ListItemData } from './data';
 
+
 export interface ListJSProps {
   content?: ListItemData[];
   pagination?: boolean;
   search?: boolean;
 }
 
-export const createListJS = ({
-  content = [],
-  pagination = false,
-  search = false,
-}: ListJSProps): HTMLElement => {
-  const searchInput = search
-    ? '<input class="search" placeholder="Search..."/>'
-    : '';
+export const createListJS = ({ content = [], pagination = false, search = false }: ListJSProps): HTMLElement => {
+  const searchInput = search ? '<input class="search" placeholder="Search..."/>' : '';
   const paginationControls = pagination ? '<ul class="pagination"></ul>' : '';
 
   const listItems = content
@@ -53,9 +48,15 @@ export const createListJS = ({
   };
 
   setTimeout(() => {
-    import('list.js').then((List) => {
-      new List('hacker-list', options);
-    });
+    (async () => {
+      // Dynamically load list.js and handle both CJS/ESM default shapes
+      const mod = await import('list.js');
+      const ListCtor = (mod && (mod.default || mod)) as any;
+
+      if (typeof ListCtor === 'function') {
+        new ListCtor('hacker-list', options);
+      }
+    })();
   }, 0);
 
   return element;

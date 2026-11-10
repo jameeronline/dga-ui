@@ -8,19 +8,20 @@ export interface BadgeProps {
   type?: BaseColorVariant;
   rounded?: boolean;
   iconOnly?: boolean;
+  border?: boolean;
 }
 
 const badgeClassNames = tv({
-  base: 'font-sans text-xs inline-flex items-center justify-center',
+  base: 'text-sm inline-flex items-center justify-center cursor-pointer transition duration-300 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-focus-outline',
   variants: {
     type: {
-      primary: 'bg-primary-50 text-primary-800',
-      secondary: 'bg-secondary-100 text-secondary-800',
-      tertiary: 'bg-tertiary-100 text-tertiary-800',
-      danger: 'bg-danger-50 text-danger-800',
-      success: 'bg-success-50 text-success-800',
-      info: 'bg-info-50 text-info-800',
-      warning: 'bg-warning-50 text-warning-800',
+      primary: 'bg-primary-background text-primary',
+      secondary: 'bg-secondary-background text-secondary',
+      tertiary: 'bg-tertiary-background text-tertiary',
+      danger: 'bg-danger-background-subtle text-danger',
+      success: 'bg-success-background text-success',
+      info: 'bg-info-background text-info',
+      warning: 'bg-warning-background text-warning-800',
       light: 'bg-gray-100 text-gray-800',
       dark: 'bg-gray-800 text-white',
     },
@@ -29,9 +30,63 @@ const badgeClassNames = tv({
       false: 'rounded',
     },
     iconOnly: {
-      true: 'p-0 w-10 h-10',
-      false: 'px-4 py-2',
+      true: 'w-10 h-10',
+      false: 'px-4 h-8',
     },
+  },
+
+  compoundVariants: [
+    {
+      type: 'primary',
+      border: true,
+      class: 'border border-primary-border',
+    },
+    {
+      type: 'secondary',
+      border: true,
+      class: 'border border-secondary-border',
+    },
+    {
+      type: 'tertiary',
+      border: true,
+      class: 'border border-tertiary-border',
+    },
+    {
+      type: 'danger',
+      border: true,
+      class: 'border border-danger-border',
+    },
+    {
+      type: 'success',
+      border: true,
+      class: 'border border-success-border',
+    },
+    {
+      type: 'info',
+      border: true,
+      class: 'border border-info-border',
+    },
+    {
+      type: 'warning',
+      border: true,
+      class: 'border border-warning-border',
+    },
+    {
+      type: 'light',
+      border: true,
+      class: 'border border-gray-border',
+    },
+    {
+      type: 'dark',
+      border: true,
+      class: 'border border-gray-600',
+    },
+  ],
+  defaultVariants: {
+    type: 'primary',
+    rounded: false,
+    iconOnly: false,
+    border: false,
   },
 });
 
@@ -41,10 +96,10 @@ function escapeHtml(text: string): string {
   return div.innerHTML;
 }
 
-export const createBadge = ({ label = 'badge', type = 'primary', rounded = false, iconOnly = false }: BadgeProps): string => {
-  const badgeClass = badgeClassNames({ type, rounded, iconOnly });
+export const createBadge = ({ label = 'badge', type = 'primary', rounded = false, iconOnly = false, border = false }: BadgeProps): string => {
+  const badgeClass = badgeClassNames({ type, rounded, iconOnly, border });
   const escapedLabel = escapeHtml(label);
-  const content = iconOnly ? '<i class="ri-star-line"></i>' : escapedLabel;
+  const content = iconOnly ? '<i class="hgi hgi-stroke hgi-rounded hgi-star text-xl"></i>' : escapedLabel;
 
   return formatHtml(`
 <span class="${badgeClass}">

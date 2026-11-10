@@ -5,12 +5,11 @@ import { tableData, tableColumns } from './data';
 
 const meta: Meta<DataTablesProps> = {
   title: 'Vendor/DataTables',
-  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component:
-          'DataTables is a powerful jQuery plugin for creating interactive data tables with pagination, instant search, and multi-column sorting. Visit https://datatables.net for documentation.',
+          'DataTables is a powerful plugin for creating interactive data tables with pagination, instant search, and multi-column sorting. Visit https://datatables.net for documentation.',
       },
     },
   },
@@ -132,7 +131,7 @@ export default meta;
 type Story = StoryObj<typeof createDataTable>;
 
 export const BasicTable: Story = {
-  name: 'Basic Table',
+  name: 'Basic Table with Pagination and Ordering',
   args: {
     search: false,
     pagination: true,
@@ -149,7 +148,7 @@ export const BasicTable: Story = {
 };
 
 export const WithSearch: Story = {
-  name: 'With Search',
+  name: 'Basic Table with Search',
   args: {
     search: true,
     pagination: true,
@@ -166,7 +165,7 @@ export const WithSearch: Story = {
 };
 
 export const FullFeatured: Story = {
-  name: 'Full Featured',
+  name: 'Full Featured Data Table',
   args: {
     search: true,
     pagination: true,
@@ -184,7 +183,7 @@ export const FullFeatured: Story = {
 };
 
 export const NoPagination: Story = {
-  name: 'Without Pagination',
+  name: 'Data Table Without Pagination',
   args: {
     search: true,
     pagination: false,
@@ -201,7 +200,7 @@ export const NoPagination: Story = {
 };
 
 export const CustomPageLength: Story = {
-  name: 'Custom Page Length',
+  name: 'Data Table with Custom Page Length',
   args: {
     search: false,
     pagination: true,

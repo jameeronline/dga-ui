@@ -1,5 +1,9 @@
 import type { DataTablesColumn, DataTablesRow } from './data';
 
+//import 'datatables.net-dt/css/jquery.dataTables.css';
+
+import DataTable from 'datatables.net-dt';
+
 export interface DataTablesProps {
   data?: DataTablesRow[];
   columns?: DataTablesColumn[];
@@ -65,9 +69,7 @@ export const createDataTable = ({
   };
 
   setTimeout(() => {
-    import('datatables.net-dt').then((DataTable) => {
-      new DataTable(`#${tableId}`, options);
-    });
+    new DataTable(`#${tableId}`, options);
   }, 0);
 
   return element;
